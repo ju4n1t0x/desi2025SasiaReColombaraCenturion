@@ -8,17 +8,17 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Voluntario extends Persona{
 
-	private long nroSeguimiento;
+	private long nroSeguro;
 	
 	@OneToMany(mappedBy="voluntario")
 	private List<EntregaAsistencia> entregaAsistnecia;
 
-	public long getNroSeguimiento() {
-		return nroSeguimiento;
+	public long getNroSeguro() {
+		return nroSeguro;
 	}
 
-	public void setNroSeguimiento(long nroSeguimiento) {
-		this.nroSeguimiento = nroSeguimiento;
+	public void setNroSeguro(long nroSeguro) {
+		this.nroSeguro = nroSeguro;
 	}
 
 	public List<EntregaAsistencia> getEntregaAsistnecia() {

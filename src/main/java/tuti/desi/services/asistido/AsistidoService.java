@@ -1,4 +1,4 @@
-package tuti.desi.services;
+package tuti.desi.services.asistido;
 
 import java.sql.Date;
 import java.util.List;
@@ -18,7 +18,7 @@ public class AsistidoService implements IAsistidoService{
 	@Override
 	public List<Asistido> getAll() {
 		List<Asistido> listaAsistidos = asistidoRepo.findAll();
-		return null;
+		return listaAsistidos;
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class AsistidoService implements IAsistidoService{
 		asis.setFechaRegistro(nuevaFechaReg);
 		asis.setFamilia(nuevaFamilia);
 		
-		// TODO Auto-generated method stub
+		
 		
 	}
 	
