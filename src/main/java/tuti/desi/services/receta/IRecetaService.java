@@ -16,5 +16,5 @@ public interface IRecetaService {
 	
 	public Receta findReceta(Long id);
 	
-	public void editReceta(Long idOriginal, Long nuevoId, String nuevoNombre, String nuevaDescripcion,List<ItemReceta> nuevoItemReceta, List<Preparacion> nuevasPreparaciones);
+	public void editReceta(Long idOriginal, String nuevoNombre, String nuevaDescripcion,List<ItemReceta> nuevoItemReceta, List<Preparacion> nuevasPreparaciones);
 }

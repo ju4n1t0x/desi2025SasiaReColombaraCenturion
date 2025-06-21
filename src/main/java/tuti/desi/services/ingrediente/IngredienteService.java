@@ -41,9 +41,8 @@ public class IngredienteService implements IIngredienteService{
 	}
 
 	@Override
-	public void editIngrediente(Long idOriginal, Long nuevoId, String nuevoNombre, Integer nuevasCalorias, Float nuevoStockDisponible, Float nuevoPrecioActual) {
+	public void editIngrediente(Long idOriginal, String nuevoNombre, Integer nuevasCalorias, Float nuevoStockDisponible, Float nuevoPrecioActual) {
 		Ingrediente ingre = this.findIngrediente(idOriginal);
-		ingre.setId(nuevoId);
 		ingre.setNombre(nuevoNombre);
 		ingre.setCalorias(nuevasCalorias);
 		

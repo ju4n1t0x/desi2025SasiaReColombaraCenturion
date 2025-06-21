@@ -15,6 +15,6 @@ public interface ICondimentoService {
 	
 	public Condimento findCondimento (Long id);
 	
-	public void editCondimento(Long idOriginal, Long nuevoId, String nuevoNombre, Integer nuevasCalorias, List<ItemReceta> nuevoItemReceta);
+	public void editCondimento(Long idOriginal, String nuevoNombre, Integer nuevasCalorias, List<ItemReceta> nuevoItemReceta);
 	
 }

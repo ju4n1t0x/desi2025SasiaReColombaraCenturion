@@ -16,5 +16,5 @@ public interface IVoluntarioService {
 	
 	public Voluntario findVoluntario(Long id);
 	
-	public void editVoluntario(Long idOiriginal, Long nuevoId, Integer nuevoDni, String nuevoNombre, String nuevoApellido, Date nuevaFechaNac, String nuevaOcupacion, Long nuevoNumeroSeguro, List<EntregaAsistencia> nuevaEntregaAsistencia);
+	public void editVoluntario(Long idOiriginal, Integer nuevoDni, String nuevoNombre, String nuevoApellido, Date nuevaFechaNac, String nuevaOcupacion, Long nuevoNumeroSeguro, List<EntregaAsistencia> nuevaEntregaAsistencia);
 }

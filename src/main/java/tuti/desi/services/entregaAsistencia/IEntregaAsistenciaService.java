@@ -16,5 +16,5 @@ public interface IEntregaAsistenciaService {
 	
 	public EntregaAsistencia findEntregaAsistencia(Long id);
 	
-	public void editEntregaAsistencia(Long idOriginal, Long nuevoId, Date nuevaFecha, Integer nuevaCantidadRaciones, Preparacion nuevaPreparacion);
+	public void editEntregaAsistencia(Long idOriginal, Date nuevaFecha, Integer nuevaCantidadRaciones, Preparacion nuevaPreparacion);
 }

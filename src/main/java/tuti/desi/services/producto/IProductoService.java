@@ -15,5 +15,5 @@ public interface IProductoService {
 	
 	public Producto findProducto(Long id);
 	
-	public void editProducto(Long idOriginal, Long nuevoId, String nuevoNombre, Integer nuevasCalorias, List<ItemReceta> nuevoItemReceta, Float nuevoStock, Float nuevoPrecio);
+	public void editProducto(Long idOriginal, String nuevoNombre, Integer nuevasCalorias, List<ItemReceta> nuevoItemReceta, Float nuevoStock, Float nuevoPrecio);
 }

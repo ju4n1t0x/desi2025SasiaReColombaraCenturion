@@ -40,9 +40,8 @@ public class AsistidoService implements IAsistidoService{
 	}
 	
 	@Override
-	public void editAsistido(Long idOriginal, Long nuevoId, Integer nuevoDni, String nuevoDomicilio, String nuevoNombre, String nuevoApellido, Date nuevaFechaNac, String nuevaOcupacion, Date nuevaFechaReg, Familia nuevaFamilia) {
+	public void editAsistido(Long idOriginal, Integer nuevoDni, String nuevoDomicilio, String nuevoNombre, String nuevoApellido, Date nuevaFechaNac, String nuevaOcupacion, Date nuevaFechaReg, Familia nuevaFamilia) {
 		Asistido asis = this.findAsistido(idOriginal);
-		asis.setId(nuevoId);
 		asis.setDni(nuevoDni);
 		asis.setApellido(nuevoApellido);
 		asis.setNombre(nuevoNombre);

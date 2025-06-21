@@ -23,6 +23,6 @@ public interface IAsistidoService {
 	public Asistido findAsistido (Long Id);
 	
 	//metodo para editar un asistido
-	public void editAsistido (Long idOriginal, Long nuevoId, Integer nuevoDni, String nuevoDomicilio, String nuevoNombre, String nuevoApellido, Date nuevaFechaNac, String nuevaOcupacion, Date nuevaFechaReg, Familia nuevaFamilia);
+	public void editAsistido (Long idOriginal, Integer nuevoDni, String nuevoDomicilio, String nuevoNombre, String nuevoApellido, Date nuevaFechaNac, String nuevaOcupacion, Date nuevaFechaReg, Familia nuevaFamilia);
 }
 

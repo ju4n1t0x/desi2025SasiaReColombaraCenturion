@@ -9,5 +9,5 @@ import tuti.desi.entidades.Preparacion;
 
 @Repository
 public interface IPreparacionRepo extends JpaRepository<Preparacion, Long>{
-	List<Preparacion> finBy(Long id);
+	List<Preparacion> findBy(Long id);
 }

@@ -41,9 +41,8 @@ public class EntregaAsistenciaService implements IEntregaAsistenciaService{
 	}
 
 	@Override
-	public void editEntregaAsistencia(Long idOriginal, Long nuevoId, Date nuevaFecha, Integer nuevaCantidadRaciones, Preparacion nuevaPreparacion) {
+	public void editEntregaAsistencia(Long idOriginal, Date nuevaFecha, Integer nuevaCantidadRaciones, Preparacion nuevaPreparacion) {
 		EntregaAsistencia entregaAsis = this.findEntregaAsistencia(idOriginal);
-		entregaAsis.setId(nuevoId);
 		entregaAsis.setFecha(nuevaFecha);
 		entregaAsis.setCantidadRaciones(nuevaCantidadRaciones);
 		entregaAsis.setPreparacion(nuevaPreparacion);

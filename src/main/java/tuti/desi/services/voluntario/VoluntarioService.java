@@ -39,10 +39,9 @@ public class VoluntarioService implements IVoluntarioService{
 	}
 
 	@Override
-	public void editVoluntario(Long idOriginal, Long nuevoId, Integer nuevoDni, String nuevoNombre,
+	public void editVoluntario(Long idOriginal, Integer nuevoDni, String nuevoNombre,
 			String nuevoApellido, Date nuevaFechaNac, String nuevaOcupacion, Long nuevoNumeroSeguro, List<EntregaAsistencia> nuevaEntregaAsistencia) {
 		Voluntario volu = this.findVoluntario(idOriginal);
-		volu.setId(nuevoId);
 		volu.setDni(nuevoDni);
 		volu.setNombre(nuevoNombre);
 		volu.setApellido(nuevoApellido);

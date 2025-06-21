@@ -39,9 +39,8 @@ public class CondimentoService implements ICondimentoService {
 	}
 
 	@Override
-	public void editCondimento(Long idOriginal, Long nuevoId, String nuevoNombre, Integer nuevasCalorias, List<ItemReceta> nuevoItemReceta) {
+	public void editCondimento(Long idOriginal, String nuevoNombre, Integer nuevasCalorias, List<ItemReceta> nuevoItemReceta) {
 		Condimento condi = this.findCondimento(idOriginal);
-		condi.setId(nuevoId);
 		condi.setNombre(nuevoNombre);
 		condi.setCalorias(nuevasCalorias);
 		condi.setItemReceta(nuevoItemReceta);

@@ -16,6 +16,6 @@ public interface IIngredienteService {
 	
 	public Ingrediente findIngrediente(Long id);
 	
-	public void editIngrediente(Long irOirignal, Long nuevoId, String nuevoNombre, Integer nuevasCalorias, Float nuevoStockDisponible, Float nuevoPrecioActual);
+	public void editIngrediente(Long irOirignal, String nuevoNombre, Integer nuevasCalorias, Float nuevoStockDisponible, Float nuevoPrecioActual);
 	
 }

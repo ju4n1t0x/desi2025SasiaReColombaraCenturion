@@ -41,9 +41,8 @@ public class RecetaService implements IRecetaService{
 	}
 
 	@Override
-	public void editReceta(Long idOriginal, Long nuevoId, String nuevoNombre, String nuevaDescripcion, List<ItemReceta> nuevoItemReceta, List<Preparacion> nuevasPreparaciones) {
+	public void editReceta(Long idOriginal, String nuevoNombre, String nuevaDescripcion, List<ItemReceta> nuevoItemReceta, List<Preparacion> nuevasPreparaciones) {
 		Receta rece = this.findReceta(idOriginal);
-		rece.setId(nuevoId);
 		rece.setNombre(nuevoNombre);
 		rece.setDescripcion(nuevaDescripcion);
 		rece.setItemReceta(nuevoItemReceta);

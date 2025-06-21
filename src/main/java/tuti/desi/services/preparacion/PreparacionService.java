@@ -41,10 +41,9 @@ public class PreparacionService implements IPreparacionService{
 	}
 
 	@Override
-	public void editPreparacion(Long idOriginal, Long nuevoId, Date nuevaFechaCoccion, Integer nuevoTotalRaciones,
+	public void editPreparacion(Long idOriginal, Date nuevaFechaCoccion, Integer nuevoTotalRaciones,
 			Integer nuevoStockRaciones, Receta nuevaReceta) {
 		Preparacion prep = this.findPreparacion(idOriginal);
-		prep.setId(nuevoId);
 		prep.setFechaCondicion(nuevaFechaCoccion);
 		prep.setTotalRacionesPreparadas(nuevoTotalRaciones);
 		prep.setStockRacionesRestantes(nuevoStockRaciones);

@@ -40,9 +40,8 @@ public class ProductoService implements IProductoService{
 	}
 
 	@Override
-	public void editProducto(Long idOriginal, Long nuevoId, String nuevoNombre, Integer nuevasCalorias, List<ItemReceta> nuevoItemReceta, Float nuevoStock, Float nuevoPrecio) {
+	public void editProducto(Long idOriginal, String nuevoNombre, Integer nuevasCalorias, List<ItemReceta> nuevoItemReceta, Float nuevoStock, Float nuevoPrecio) {
 		Producto produc = this.findProducto(idOriginal);
-		produc.setId(nuevoId);
 		produc.setNombre(nuevoNombre);
 		produc.setCalorias(nuevasCalorias);
 		produc.setItemReceta(nuevoItemReceta);

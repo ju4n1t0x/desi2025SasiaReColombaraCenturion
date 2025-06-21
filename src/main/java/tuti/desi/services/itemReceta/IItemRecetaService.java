@@ -18,6 +18,6 @@ public interface IItemRecetaService {
 	
 	public ItemReceta findItemReceta(Long id);
 	
-	public void editItemReceta(Long idOriginal, Long nuevoId, Integer nuevasCalorias, Integer nuevaCantidad, Ingrediente nuevoIngrediente, Receta nuevaReceta);
+	public void editItemReceta(Long idOriginal, Integer nuevasCalorias, Integer nuevaCantidad, Ingrediente nuevoIngrediente, Receta nuevaReceta);
 	
 }

@@ -16,5 +16,5 @@ public interface IPreparacionService {
 	
 	public Preparacion findPreparacion(Long id);
 	
-	public void editPreparacion(Long idOriginal, Long nuevoId, Date nuevaFechaCoccion, Integer nuevoTotalRaciones, Integer nuevoStockRaciones, Receta receta);
+	public void editPreparacion(Long idOriginal, Date nuevaFechaCoccion, Integer nuevoTotalRaciones, Integer nuevoStockRaciones, Receta receta);
 }
