@@ -1,0 +1,13 @@
+package tuti.desi.presentacion;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import tuti.desi.services.IAsistidoService;
+
+@RestController
+public class AsistidoController {
+
+	@Autowired
+	private IAsistidoService interAsistido;
+}
