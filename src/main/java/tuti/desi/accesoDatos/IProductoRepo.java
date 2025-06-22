@@ -8,5 +8,5 @@ import tuti.desi.entidades.Producto;
 
 public interface IProductoRepo extends JpaRepository<Producto, Long>{
 	
-	List<Producto> findBy(Long id);
+	List<Producto> findByNombre(String nombre);
 }

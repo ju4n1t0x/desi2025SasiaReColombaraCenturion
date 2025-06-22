@@ -10,5 +10,5 @@ import tuti.desi.entidades.Voluntario;
 @Repository
 public interface IVoluntarioRepo extends JpaRepository<Voluntario, Long>{
 
-	List<Voluntario> findBy(Long id);
+	List<Voluntario> findByDni(Integer dni);
 }
