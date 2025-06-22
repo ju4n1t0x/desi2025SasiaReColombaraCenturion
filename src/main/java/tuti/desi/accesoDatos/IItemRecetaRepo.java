@@ -10,6 +10,6 @@ import tuti.desi.entidades.ItemReceta;
 @Repository
 public interface IItemRecetaRepo extends JpaRepository<ItemReceta, Long>{
 	
-	List<ItemReceta> findBy(Long id);
+	List<ItemReceta> findByReceta_id(Long recetaId);
 
 }

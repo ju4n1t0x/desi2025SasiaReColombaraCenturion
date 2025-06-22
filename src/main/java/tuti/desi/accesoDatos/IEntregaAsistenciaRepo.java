@@ -1,5 +1,6 @@
 package tuti.desi.accesoDatos;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,5 +10,5 @@ import tuti.desi.entidades.EntregaAsistencia;
 
 @Repository
 public interface IEntregaAsistenciaRepo extends JpaRepository<EntregaAsistencia, Long>{
-	List<EntregaAsistencia> findBy(Long id);
+	List<EntregaAsistencia> findByFecha(Date fecha);
 }

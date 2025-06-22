@@ -11,6 +11,6 @@ import tuti.desi.entidades.Asistido;
 @Repository
 public interface IAsistidoRepo extends JpaRepository<Asistido, Long>{
 	
-	List<Asistido> findBy(Long id);
+	List<Asistido> findByDni(Integer dni);
 
 }

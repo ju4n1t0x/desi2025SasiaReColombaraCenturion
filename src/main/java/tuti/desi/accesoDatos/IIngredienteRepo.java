@@ -10,5 +10,5 @@ import tuti.desi.entidades.Ingrediente;
 @Repository
 public interface IIngredienteRepo extends JpaRepository<Ingrediente, Long>{
 
-	List<Ingrediente> findBy(Long id);
+	List<Ingrediente> findByNombre(String nombre);
 }
