@@ -4,11 +4,33 @@
     <meta charset="UTF-8" />
     <title>Alta Entrega</title>
 </head>
-<body>
-    <div id="main-content" class="container mt-4">
+<body class="container-fluid">
+    <div id="main-content" class="container-fluid">
         <h1>Alta de Entrega</h1>
         <p>Formulario para dar de alta una Entrega.</p>
-        <!-- Aquí puedes agregar el formulario de alta -->
+		<form class="container-fluid rounded-2 border border-primary p-4" method="post">
+					<div class="mb-3">
+						<label for="numeroFamilia" class="form-label">Numero de Familia</label>
+						<input type="id" class="form-control" id="numeroFamilia" placeholder="Ingrese el id de la familia">
+					</div>
+					<div class="mb-3">
+						<label for="cantidadRaciones" class="form-label">Cantidad de Raciones</label>
+						<input type="number" class="form-control" id="cantidadRaciones" placeholder="Ingrese la cantidad de raciones a entregar">
+					</div>
+					<div class="mb-3">
+						<label for="fechaEntrega" class="form-label">Fecha de Entrega</label>
+						<input type="date" class="form-control" id="fechaEntrega" placeholder="Ingrese la fecha de entrega">
+					</div>
+					<div class="mb-3">
+						<label for="nombrePreparacion" class="form-label">Preparacion entregada</label>
+						<input type="text" class="form-control" id="nombrePreparacion" placeholder="Ingrese el nombre del plato entregado">
+					</div>
+					<div class="mb-3">
+						<label for="nombreVoluntario" class="form-label">Nombre del voluntario que entrega</label>
+						<input type="text" class="form-control" id="nombreVoluntario">
+					</div>
+					<button type="submit" class="btn btn-primary">Agregar entrega</button>
+				</form>
     </div>
 </body>
 </html>

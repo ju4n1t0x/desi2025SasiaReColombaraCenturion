@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8" />
-    <title>Alta Familia</title>
+	<meta charset="UTF-8" />
+	<title>Alta Familia</title>
 </head>
+
 <body>
-    <div id="main-content" class="container mt-4">
-        <h1>Alta de Familia</h1>
-        <p>Formulario para dar de alta una familia.</p>
-        <!-- Aquí puedes agregar el formulario de alta -->
-    </div>
+	<div id="main-content" class="container mt-4">
+		<h1>Alta de Familia</h1>
+		<p>Formulario para dar de alta una familia.</p>
+		<form>
+			<div class="mb-3">
+				<label for="exampleInputEmail1" class="form-label">Numero de Familia</label>
+				<input type="id" class="form-control" id="exampleInputId">
+
+			</div>
+			<div class="mb-3">
+				<label for="exampleInputName" class="form-label">Nombre de la Familia</label>
+				<input type="name" class="form-control" id="exampleInputName">
+			</div>
+			<div class="mb-3">
+				<label for="exampleInputFechaRegistro" class="form-label">Fecha de Registro</label>
+				<input type="fechaRegistro" class="form-control" id="exampleInputFechaRegistro">
+			</div>
+			<div class="mb-3">
+				<label for="exampleInputIdAsistido" class="form-label">Cual es el asistido que desea asignar?</label>
+				<input type="idAsistido" class="form-control" id="exampleInputIdAsistido">
+			</div>
+			<button type="submit" class="btn btn-primary">Agregar</button>
+		</form>
+	</div>
 </body>
+
 </html>
