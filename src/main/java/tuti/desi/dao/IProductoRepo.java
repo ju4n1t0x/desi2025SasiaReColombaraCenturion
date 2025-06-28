@@ -1,4 +1,4 @@
-package tuti.desi.accesoDatos;
+package tuti.desi.dao;
 
 import java.util.List;
 

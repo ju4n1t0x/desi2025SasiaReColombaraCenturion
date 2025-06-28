@@ -58,6 +58,23 @@ public class EntregaAsistencia {
 	public void setPreparacion(Preparacion preparacion) {
 		this.preparacion = preparacion;
 	}
+
+	public Voluntario getVoluntario() {
+		return voluntario;
+	}
+
+	public void setVoluntario(Voluntario voluntario) {
+		this.voluntario = voluntario;
+	}
+
+	public Familia getFamilia() {
+		return familia;
+	}
+
+	public void setFamilia(Familia familia) {
+		this.familia = familia;
+	}
+	
 	
 	
 }

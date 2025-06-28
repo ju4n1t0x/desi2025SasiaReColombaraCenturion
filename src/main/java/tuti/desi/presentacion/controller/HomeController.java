@@ -1,8 +1,11 @@
 package tuti.desi.presentacion.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import tuti.desi.presentacion.models.EntregaAsistenciaModel;
 
 @Controller
 @RequestMapping("/")
@@ -77,10 +80,7 @@ public class HomeController {
     }
     
     //Entrega
-    @GetMapping("/entrega/altaEntrega")
-    public String altaEntrega() {
-        return "entrega/altaEntrega";
-    }
+    
     
     @GetMapping("/entrega/eliminacionEntrega")
     public String eliminacionEntrega() {

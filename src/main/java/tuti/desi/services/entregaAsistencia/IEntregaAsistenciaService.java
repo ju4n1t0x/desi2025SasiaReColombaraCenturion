@@ -5,16 +5,20 @@ import java.util.List;
 
 import tuti.desi.entidades.EntregaAsistencia;
 import tuti.desi.entidades.Preparacion;
+import tuti.desi.presentacion.models.EntregaAsistenciaModel;
 
 public interface IEntregaAsistenciaService {
 
-	public List<EntregaAsistencia> getAll();
-	
-	public void saveEntregaAsistencia(EntregaAsistencia entregaAsistencia);
-	
-	public void deleteEntregaAsistencia(Long id);
-	
-	public EntregaAsistencia findEntregaAsistencia(Long id);
-	
-	public void editEntregaAsistencia(Long idOriginal, Date nuevaFecha, Integer nuevaCantidadRaciones, Preparacion nuevaPreparacion);
-}
+
+        EntregaAsistenciaModel save(EntregaAsistenciaModel entregaAsistenciaModel);
+
+        void deleteEntregaAsistencia(Long id);
+
+        EntregaAsistenciaModel findEntregaAsistencia(Long id);
+
+        EntregaAsistenciaModel editEntregaAsistencia(EntregaAsistenciaModel entregaAsistenciaModel);
+
+
+
+
+    }

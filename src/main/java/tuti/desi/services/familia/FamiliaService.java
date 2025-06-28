@@ -3,12 +3,15 @@ package tuti.desi.services.familia;
 import java.sql.Date;
 import java.util.List;
 
-import tuti.desi.accesoDatos.IFamiliaRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import tuti.desi.dao.IFamiliaRepo;
 import tuti.desi.entidades.Asistido;
 import tuti.desi.entidades.Familia;
-
+@Service
 public class FamiliaService implements IFamiliaService{
-	
+	@Autowired
 	private IFamiliaRepo familiaRepo;
 
 	@Override

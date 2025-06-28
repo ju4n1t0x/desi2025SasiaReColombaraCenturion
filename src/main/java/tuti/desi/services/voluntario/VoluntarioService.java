@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import tuti.desi.accesoDatos.IVoluntarioRepo;
+import tuti.desi.dao.IVoluntarioRepo;
 import tuti.desi.entidades.EntregaAsistencia;
 import tuti.desi.entidades.Voluntario;
 

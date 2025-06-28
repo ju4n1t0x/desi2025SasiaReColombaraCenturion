@@ -5,16 +5,19 @@ import java.util.List;
 
 import tuti.desi.entidades.Preparacion;
 import tuti.desi.entidades.Receta;
+import tuti.desi.presentacion.models.PreparacionModel;
 
 public interface IPreparacionService {
 
-	public List<Preparacion> getAll();
+	public List<PreparacionModel> getAll();
+
+	public PreparacionModel convertToModel(Preparacion preparacion);
+
+	public PreparacionModel save(PreparacionModel preparacionModel);
 	
-	public void savePreparacion(Preparacion preparacion);
+	public void deletePreparacionModel(Long id);
 	
-	public void deletePreparacion(Long id);
+	public PreparacionModel findPreparacion(Long id);
 	
-	public Preparacion findPreparacion(Long id);
-	
-	public void editPreparacion(Long idOriginal, Date nuevaFechaCoccion, Integer nuevoTotalRaciones, Integer nuevoStockRaciones, Receta receta);
+	public void editPreparacion(PreparacionModel preparacionModel);
 }

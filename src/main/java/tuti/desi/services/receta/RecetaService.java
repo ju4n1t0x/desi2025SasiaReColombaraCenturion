@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tuti.desi.accesoDatos.IRecetaRepo;
+import tuti.desi.dao.IRecetaRepo;
 import tuti.desi.entidades.ItemReceta;
 import tuti.desi.entidades.Preparacion;
 import tuti.desi.entidades.Receta;
+import tuti.desi.presentacion.models.RecetaModel;
+import tuti.desi.services.transform.Transformator;
+import tuti.desi.services.transform.TransformatorToList;
 
 @Service
 public class RecetaService implements IRecetaService{
@@ -16,9 +19,20 @@ public class RecetaService implements IRecetaService{
 	@Autowired
 	private IRecetaRepo recetaRepo;
 
+	//@Autowired
+	//private Transformator transformator;
+
+	//@Autowired
+	//TransformatorToList transformatorToList;
+
+	//RecetaModel recetaModel = transformator.transform(Receta);
+
+	//List<RecetaModel> recetasModel = transformatorToList(IRecetaRepo);
+
 	@Override
 	public List<Receta> getAll() {
 		List<Receta> listaRecetas = recetaRepo.findAll();
+
 		return listaRecetas;
 	}
 
@@ -49,4 +63,9 @@ public class RecetaService implements IRecetaService{
 		rece.setPreparaciones(nuevasPreparaciones);
 		
 	}
+
+
+
+
+
 }

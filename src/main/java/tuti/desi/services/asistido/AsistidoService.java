@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tuti.desi.accesoDatos.IAsistidoRepo;
+import tuti.desi.dao.IAsistidoRepo;
 import tuti.desi.entidades.Asistido;
 import tuti.desi.entidades.Familia;
 

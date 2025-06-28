@@ -1,33 +1,36 @@
-package tuti.desi.entidades;
+package tuti.desi.presentacion.models;
 
 import java.sql.Date;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import tuti.desi.entidades.EntregaAsistencia;
+import tuti.desi.entidades.Receta;
 
-@Entity
-public class Preparacion {
+public class PreparacionModel {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	
 	private Integer totalRacionesPreparadas;
 	private Integer stockRacionesRestantes;
-	 @Column(name = "fecha_coccion") 
 	private Date fechaCoccion;
 	
-	@ManyToOne
 	private Receta receta;
 	
-	@OneToMany(mappedBy = "preparacion")
-	private List<EntregaAsistencia> entregaAsistencia;
+	private List<EntregaAsistenciaModel> entregaAsistencia;
+
+	public PreparacionModel() {
+		super();
+	}
+
+	public PreparacionModel(long id, Integer totalRacionesPreparadas, Integer stockRacionesRestantes, Date fechaCoccion,
+			Receta receta, List<EntregaAsistenciaModel> entregaAsistencia) {
+		super();
+		this.id = id;
+		this.totalRacionesPreparadas = totalRacionesPreparadas;
+		this.stockRacionesRestantes = stockRacionesRestantes;
+		this.fechaCoccion = fechaCoccion;
+		this.receta = receta;
+		this.entregaAsistencia = entregaAsistencia;
+	}
 
 	public long getId() {
 		return id;
@@ -69,11 +72,11 @@ public class Preparacion {
 		this.receta = receta;
 	}
 
-	public List<EntregaAsistencia> getEntregaAsistencia() {
+	public List<EntregaAsistenciaModel> getEntregaAsistencia() {
 		return entregaAsistencia;
 	}
 
-	public void setEntregaAsistencia(List<EntregaAsistencia> entregaAsistencia) {
+	public void setEntregaAsistencia(List<EntregaAsistenciaModel> entregaAsistencia) {
 		this.entregaAsistencia = entregaAsistencia;
 	}
 	

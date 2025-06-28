@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tuti.desi.accesoDatos.IItemRecetaRepo;
+import tuti.desi.dao.IItemRecetaRepo;
 import tuti.desi.entidades.Ingrediente;
 import tuti.desi.entidades.ItemReceta;
 import tuti.desi.entidades.Receta;

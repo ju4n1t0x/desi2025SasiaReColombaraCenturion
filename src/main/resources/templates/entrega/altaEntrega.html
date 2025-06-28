@@ -3,34 +3,53 @@
 <head>
     <meta charset="UTF-8" />
     <title>Alta Entrega</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+		  integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+		  crossorigin="anonymous"/>
 </head>
 <body class="container-fluid">
+	<th:block th:replace="~{fragments/navbar :: navBar}"></th:block>
     <div id="main-content" class="container-fluid">
-        <h1>Alta de Entrega</h1>
+        <section class="text-center p-2">
+		<h1>Alta de Entrega</h1>
         <p>Formulario para dar de alta una Entrega.</p>
-		<form class="container-fluid rounded-2 border border-primary p-4" method="post">
+		</section>
+
+
+		<section class="container-fluid rounded-2 border border-primary p-4">
+			<h2 class="text-center p-3">Las preparaciones del día son</h2>
+			<ul class="list-group">
+				<li class="list-group-item disabled" aria-disabled="true"
+					th:each="preparacion : ${preparaciones}"
+					th:value="${preparacion.id}"
+					th:text="${preparacion.id + preparacion.receta.nombre}">
+
+				</li>
+			</ul>
+		</section>
+
+
+		<section>
+		<form th:action="@{/guardarEntrega}" method="post" th:object="${entrega}" class="container-fluid rounded-2 border border-primary p-4">
 					<div class="mb-3">
-						<label for="numeroFamilia" class="form-label">Numero de Familia</label>
-						<input type="id" class="form-control" id="numeroFamilia" placeholder="Ingrese el id de la familia">
+						<label for="familiaSelect" class="form-label">Numero de Familia</label>
+						<input type="hidden" th:field="*{idFamilia}" class="form-control" id="familiaSelect" placeholder="Ingrese el numero de familia">
 					</div>
 					<div class="mb-3">
 						<label for="cantidadRaciones" class="form-label">Cantidad de Raciones</label>
-						<input type="number" class="form-control" id="cantidadRaciones" placeholder="Ingrese la cantidad de raciones a entregar">
+						<input type="number" th:field="*{cantidadRaciones}" class="form-control" id="cantidadRaciones" placeholder="Ingrese la cantidad de raciones a entregar">
 					</div>
 					<div class="mb-3">
-						<label for="fechaEntrega" class="form-label">Fecha de Entrega</label>
-						<input type="date" class="form-control" id="fechaEntrega" placeholder="Ingrese la fecha de entrega">
+					    <label for="preparacionSelect" class="form-label">Ingrese el id de la preparacion a entregar</label>
+						<input type="hidden" th:field="*{idPreparacion}" class="form-control" id="preparacionSelect" placeholder="Ingrese la cantidad de raciones a entregar">
+					    </select>
 					</div>
-					<div class="mb-3">
-						<label for="nombrePreparacion" class="form-label">Preparacion entregada</label>
-						<input type="text" class="form-control" id="nombrePreparacion" placeholder="Ingrese el nombre del plato entregado">
-					</div>
-					<div class="mb-3">
-						<label for="nombreVoluntario" class="form-label">Nombre del voluntario que entrega</label>
-						<input type="text" class="form-control" id="nombreVoluntario">
-					</div>
-					<button type="submit" class="btn btn-primary">Agregar entrega</button>
+					<button type="submit" class="btn btn-primary" >Agregar entrega</button>
 				</form>
+		</section>
+
+
+
     </div>
 </body>
 </html>
