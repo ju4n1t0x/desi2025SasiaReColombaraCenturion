@@ -6,6 +6,7 @@ import java.util.List;
 import tuti.desi.entidades.EntregaAsistencia;
 import tuti.desi.entidades.Preparacion;
 import tuti.desi.presentacion.models.EntregaAsistenciaModel;
+import tuti.desi.presentacion.models.FamiliaModel;
 
 public interface IEntregaAsistenciaService {
 
@@ -18,7 +19,7 @@ public interface IEntregaAsistenciaService {
 
         EntregaAsistenciaModel editEntregaAsistencia(EntregaAsistenciaModel entregaAsistenciaModel);
 
-
+        List<FamiliaModel> findAllFamilias();
 
 
     }

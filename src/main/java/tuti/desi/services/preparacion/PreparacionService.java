@@ -64,4 +64,8 @@ public class PreparacionService implements IPreparacionService {
         Preparacion preparacionGuardada = preparacionRepo.save(preparacionExistente);
         modelMapper.map(preparacionGuardada, PreparacionModel.class);
     }
+    public List<PreparacionModel> findPreparacionesDelDiaConStock(){
+    List<Preparacion> listaPreparacionesDelDiaConStock = preparacionRepo.findPreparacionesDelDiaConStock();
+    return modelMapper.map(listaPreparacionesDelDiaConStock, List.class);}
+
 }

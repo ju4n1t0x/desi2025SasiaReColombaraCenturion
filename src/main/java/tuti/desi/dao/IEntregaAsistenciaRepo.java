@@ -12,5 +12,5 @@ import tuti.desi.entidades.EntregaAsistencia;
 public interface IEntregaAsistenciaRepo extends JpaRepository<EntregaAsistencia, Long>{
 	List<EntregaAsistencia> findByFecha(Date fecha);
 
-	Long id(long id);
+
 }

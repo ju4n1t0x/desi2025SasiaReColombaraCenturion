@@ -20,4 +20,6 @@ public interface IPreparacionService {
 	public PreparacionModel findPreparacion(Long id);
 	
 	public void editPreparacion(PreparacionModel preparacionModel);
+
+	List<PreparacionModel> findPreparacionesDelDiaConStock();
 }

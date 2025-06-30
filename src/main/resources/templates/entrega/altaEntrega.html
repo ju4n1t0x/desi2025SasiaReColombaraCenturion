@@ -6,6 +6,9 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
 		  integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
 		  crossorigin="anonymous"/>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+			crossorigin="anonymous"></script>
 </head>
 <body class="container-fluid">
 	<th:block th:replace="~{fragments/navbar :: navBar}"></th:block>
@@ -16,34 +19,35 @@
 		</section>
 
 
-		<section class="container-fluid rounded-2 border border-primary p-4">
-			<h2 class="text-center p-3">Las preparaciones del día son</h2>
-			<ul class="list-group">
-				<li class="list-group-item disabled" aria-disabled="true"
-					th:each="preparacion : ${preparaciones}"
-					th:value="${preparacion.id}"
-					th:text="${preparacion.id + preparacion.receta.nombre}">
-
-				</li>
-			</ul>
-		</section>
-
-
 		<section>
 		<form th:action="@{/guardarEntrega}" method="post" th:object="${entrega}" class="container-fluid rounded-2 border border-primary p-4">
-					<div class="mb-3">
-						<label for="familiaSelect" class="form-label">Numero de Familia</label>
-						<input type="hidden" th:field="*{idFamilia}" class="form-control" id="familiaSelect" placeholder="Ingrese el numero de familia">
-					</div>
+			<div class="mb-3">
+				<label for="familiaSelected" class="form-label">Ingrese el id de la familia a entregar</label>
+				<select class="form-select" id="familiaSelected" th:field="*{familia}">
+					<option selected>Seleccione una familia</option>
+					<option th:each="familia : ${listaFamilias}" th:value="${familia.nroFamilia}" th:text="${familia.nroFamilia + ' - ' + familia.nombre}"></option>
+				</select>
+			</div>
+
+			<div class="mb-3">
+				<div th:if="${not #lists.isEmpty(preparaciones)}">
+
+				<label for="preparacionSelected" class="form-label">Ingrese la preparacion a entregar</label>
+				<select class="form-select" id="preparacionSelected" th:field="*{preparacion}">
+					<option selected>Seleccione una preparacion</option>
+					<option th:each="preparacion : ${preparaciones}" th:value="${preparacion.id}" th:text="${'Id preparacion:' + preparacion.id + ' / nombre de la preapracion:  ' + preparacion.receta.nombre  + ' / cantidad en stock: '+ preparacion.stockRacionesRestantes}"></option>
+				</select>
+			</div>
+				<div th:if="${#lists.isEmpty(preparaciones)}">
+					<p>No hay preparaciones disponibles</p>
+				</div>
+			</div>
+
 					<div class="mb-3">
 						<label for="cantidadRaciones" class="form-label">Cantidad de Raciones</label>
 						<input type="number" th:field="*{cantidadRaciones}" class="form-control" id="cantidadRaciones" placeholder="Ingrese la cantidad de raciones a entregar">
 					</div>
-					<div class="mb-3">
-					    <label for="preparacionSelect" class="form-label">Ingrese el id de la preparacion a entregar</label>
-						<input type="hidden" th:field="*{idPreparacion}" class="form-control" id="preparacionSelect" placeholder="Ingrese la cantidad de raciones a entregar">
-					    </select>
-					</div>
+
 					<button type="submit" class="btn btn-primary" >Agregar entrega</button>
 				</form>
 		</section>

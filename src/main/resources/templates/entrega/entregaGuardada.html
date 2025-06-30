@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+        crossorigin="anonymous"/>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+          crossorigin="anonymous"></script>
+    <title>Entrega Guardada</title>
+</head>
+<body>
+<table class="table table-bordered" th:if="${entrega != null}" th:object="${entrega}">
+  <thead>
+  <tr>
+    <th scope="col">Familia</th>
+    <th scope="col">Preparación (Receta)</th>
+    <th scope="col">Cantidad de Raciones</th>
+    <th scope="col">Fecha de Entrega</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <!-- CORRECCIÓN: Se accede a las propiedades del objeto 'entrega' -->
+    <td th:text="*{familia.nombre}"></td>
+    <td th:text="*{preparacion.receta.nombre}"></td>
+    <td th:text="*{cantidadRaciones}"></td>
+    <!-- Asumo que tienes un campo fecha, puedes formatearlo si es necesario -->
+    <td th:text="*{#temporals.format(fechaEntrega, 'dd/MM/yyyy HH:mm')}"></td>
+  </tr>
+  </tbody>
+</table>
+</section>
+
+</body>
+</html>
