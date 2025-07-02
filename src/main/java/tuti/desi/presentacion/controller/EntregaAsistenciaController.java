@@ -55,7 +55,8 @@ public class EntregaAsistenciaController {
         if (bindingResult.hasErrors()) {
             // Se vuelve a cargar los datos necesarios para los <select> del formulario
             cargarDatosParaFormulario(model);
-            return "entrega/altaEntrega"; // Vuelve a mostrar el formulario con los errores
+            return "entrega/altaEntrega";
+           // Vuelve a mostrar el formulario con los errores
         }
 
         try {
@@ -82,6 +83,12 @@ public class EntregaAsistenciaController {
         List<FamiliaModel> listaFamilias = entregaAsistenciaService.findAllFamilias();
         model.addAttribute("listaFamilias", listaFamilias);
     }
+
+    @GetMapping("/entrega/entregaGuardada")
+    public String mostrarEntregaGuardada() {
+        return "entrega/entregaGuardada";
+    }
+
    
 }
 

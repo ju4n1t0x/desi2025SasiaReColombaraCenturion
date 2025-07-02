@@ -24,7 +24,7 @@
 			<div class="mb-3">
 				<label for="familiaSelected" class="form-label">Ingrese el id de la familia a entregar</label>
 				<select class="form-select" id="familiaSelected" th:field="*{familia}">
-					<option selected>Seleccione una familia</option>
+					<option value="">Seleccione una familia</option>
 					<option th:each="familia : ${listaFamilias}" th:value="${familia.nroFamilia}" th:text="${familia.nroFamilia + ' - ' + familia.nombre}"></option>
 				</select>
 			</div>
@@ -34,22 +34,31 @@
 
 				<label for="preparacionSelected" class="form-label">Ingrese la preparacion a entregar</label>
 				<select class="form-select" id="preparacionSelected" th:field="*{preparacion}">
-					<option selected>Seleccione una preparacion</option>
+					<option value="" selected>Seleccione una preparacion</option>
 					<option th:each="preparacion : ${preparaciones}" th:value="${preparacion.id}" th:text="${'Id preparacion:' + preparacion.id + ' / nombre de la preapracion:  ' + preparacion.receta.nombre  + ' / cantidad en stock: '+ preparacion.stockRacionesRestantes}"></option>
 				</select>
-			</div>
-				<div th:if="${#lists.isEmpty(preparaciones)}">
-					<p>No hay preparaciones disponibles</p>
 				</div>
+				<div th:if="${#lists.isEmpty(preparaciones)}">
+                    <div class="alert alert-warning">No hay preparaciones disponibles para la fecha actual</div>
+                </div>
 			</div>
 
-					<div class="mb-3">
-						<label for="cantidadRaciones" class="form-label">Cantidad de Raciones</label>
-						<input type="number" th:field="*{cantidadRaciones}" class="form-control" id="cantidadRaciones" placeholder="Ingrese la cantidad de raciones a entregar">
-					</div>
+			<div class="mb-3">
+				<label for="cantidadRaciones" class="form-label">Cantidad de Raciones</label>
+				<input type="number" th:field="*{cantidadRaciones}" class="form-control" id="cantidadRaciones" 
+                       placeholder="Ingrese la cantidad de raciones a entregar" min="1" required>
+                <div th:if="${#fields.hasErrors('cantidadRaciones')}" class="invalid-feedback d-block">
+                    <span th:errors="*{cantidadRaciones}"></span>
+                </div>
+			</div>
 
-					<button type="submit" class="btn btn-primary" >Agregar entrega</button>
-				</form>
+            <!-- Mostrar mensaje de error general si existe -->
+            <div th:if="${errorMessage != null}" class="alert alert-danger" role="alert">
+                <span th:text="${errorMessage}"></span>
+            </div>
+
+			<button type="submit" class="btn btn-primary">Agregar entrega</button>
+		</form>
 		</section>
 
 
