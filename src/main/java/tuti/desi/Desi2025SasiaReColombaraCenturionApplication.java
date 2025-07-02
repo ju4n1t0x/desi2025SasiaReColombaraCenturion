@@ -9,5 +9,4 @@ public class Desi2025SasiaReColombaraCenturionApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Desi2025SasiaReColombaraCenturionApplication.class, args);
 	}
-
 }
