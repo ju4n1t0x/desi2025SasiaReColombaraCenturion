@@ -21,5 +21,7 @@ public interface IEntregaAsistenciaService {
 
         List<FamiliaModel> findAllFamilias();
 
+        List<EntregaAsistenciaModel> findAll();
+
 
     }

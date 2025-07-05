@@ -1,6 +1,7 @@
 package tuti.desi.entidades;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ public class EntregaAsistencia {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-	private Date fecha;
+	private LocalDate fecha;
 	private Integer cantidadRaciones;
 	
 	@ManyToOne()
@@ -35,11 +36,11 @@ public class EntregaAsistencia {
 		this.id = id;
 	}
 
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 

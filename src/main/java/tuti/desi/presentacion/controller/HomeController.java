@@ -79,13 +79,7 @@ public class HomeController {
     //Entrega
     
     
-    @GetMapping("/entrega/eliminacionEntrega")
-    public String eliminacionEntrega() {
-        return "entrega/eliminacionEntrega";
-    }
+
     
-    @GetMapping("/entrega/listadoEntrega")
-    public String listadoEntrega() {
-        return "listadoFamiliasAsistidas";
-    }
+
 }

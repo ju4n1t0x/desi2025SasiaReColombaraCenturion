@@ -19,7 +19,7 @@
   <thead>
   <tr>
     <th >Familia</th>
-    <th Preparación (Receta)</th>
+    <th Preparación (Receta)></th>
     <th >Cantidad de Raciones</th>
     <th >Fecha de Entrega</th>
   </tr>
@@ -29,12 +29,16 @@
     <td th:text="${entrega.familia != null} ? ${entrega.familia.nombre} : 'No especificada'"></td>
     <td th:text="${entrega.preparacion != null && entrega.preparacion.receta != null} ? ${entrega.preparacion.receta.nombre} : 'No especificada'"></td>
     <td th:text="${entrega.cantidadRaciones}"></td>
-    <td th:text="${#temporals.format(entrega.fecha != null ? entrega.fecha : #temporals.createNow(), 'dd/MM/yyyy HH:mm')}"></td>
+    <td>
+      <span th:if="${entrega.fecha != null}" th:text="${#temporals.format(entrega.fecha, 'dd/MM/yyyy')}"></span>
+      <span th:unless="${entrega.fecha != null}">Fecha no disponible</span>
+      </td>
+
   </tr>
   </tbody>
 </table>
 <div class="mt-3">
-  <a th:href="@{/nuevaEntrega}" class="btn btn-primary">Nueva Entrega</a>
+  <a th:href="@{/entrega/mostrarFormulario}" class="btn btn-primary">Nueva Entrega</a>
   <a th:href="@{/}" class="btn btn-secondary">Volver al Inicio</a>
 </div>
 </div>

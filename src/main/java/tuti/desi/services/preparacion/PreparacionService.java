@@ -12,6 +12,7 @@ import tuti.desi.entidades.Preparacion;
 import tuti.desi.entidades.Receta;
 import tuti.desi.presentacion.models.EntregaAsistenciaModel;
 import tuti.desi.presentacion.models.PreparacionModel;
+import tuti.desi.presentacion.models.RecetaModel;
 
 @Service
 public class PreparacionService implements IPreparacionService {
@@ -44,6 +45,7 @@ public class PreparacionService implements IPreparacionService {
     public void deletePreparacionModel(Long id){
         preparacionRepo.deleteById(id);
     }
+
     @Override
     public PreparacionModel findPreparacion(Long id){
         Preparacion preparacion = preparacionRepo.findById(id).orElse(null);
@@ -55,16 +57,19 @@ public class PreparacionService implements IPreparacionService {
 
     @Override
     public void editPreparacion(PreparacionModel preparacionModel){
-        Preparacion preparacionExistente = preparacionRepo.findById(preparacionModel.getId())
+        Preparacion preparacion = preparacionRepo.findById(preparacionModel.getId())
                 .orElseThrow(() -> new RuntimeException("Preparacion no encontrada"));
+        preparacion.setId(preparacionModel.getId());
+        preparacion.setReceta(modelMapper.map(preparacionModel.getReceta(), Receta.class));
+        preparacion.setFechaCoccion(preparacionModel.getFechaCoccion());
+        preparacionRepo.save(preparacion);
 
-        modelMapper.map(preparacionModel, preparacionExistente);
-
-        Preparacion preparacionGuardada = preparacionRepo.save(preparacionExistente);
-        modelMapper.map(preparacionGuardada, PreparacionModel.class);
     }
+
     public List<PreparacionModel> findPreparacionesDelDiaConStock(){
     List<Preparacion> listaPreparacionesDelDiaConStock = preparacionRepo.findPreparacionesDelDiaConStock();
     return modelMapper.map(listaPreparacionesDelDiaConStock, List.class);}
+
+
 
 }

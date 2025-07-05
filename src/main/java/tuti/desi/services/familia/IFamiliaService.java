@@ -5,6 +5,7 @@ import java.util.List;
 
 import tuti.desi.entidades.Asistido;
 import tuti.desi.entidades.Familia;
+import tuti.desi.presentacion.models.FamiliaModel;
 
 public interface IFamiliaService {
 
@@ -14,7 +15,7 @@ public interface IFamiliaService {
 	
 	public void deleteFamilia(Integer nroFamilia);
 	
-	public Familia findFamilia(Integer nroFamilia);
-	
-	public void editFamilia(Integer nroFamilia, String nuevoNombre, Date nuevaFrechaRegistro, List<Asistido> nuevaListaAsistidos);
+	public FamiliaModel findFamilia(Integer nroFamilia);
+
+	public void editFamilia(FamiliaModel familiaModel);
 }

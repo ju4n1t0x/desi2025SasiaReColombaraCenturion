@@ -1,30 +1,33 @@
 package tuti.desi.presentacion.models;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import tuti.desi.dao.IFamiliaRepo;
-import tuti.desi.entidades.Familia;
 import tuti.desi.entidades.Preparacion;
 
 public class EntregaAsistenciaModel {
-	@NotNull
-	private long id;
 
-	@NotNull
-	private Date fecha;
+	private Long id;
+
+
+	private LocalDate fecha;
 
 	@NotNull(message = "La cantidad de raciones no puede estar vacía.")
 	@Min(value = 1, message = "La cantidad de raciones debe ser mayor a 0.")
 	private Integer cantidadRaciones;
 
 	@NotNull(message = "Debe seleccionar una preparacion.")
-	private Preparacion preparacion;
+	private Long idPreparacion;
+
+	private PreparacionModel preparacion;
 
 	private VoluntarioModel voluntario;
 
 	@NotNull(message = "Debe seleccionar una familia.")
+	private Integer nroFamilia;
+
 	private FamiliaModel familia;
 
 
@@ -32,28 +35,30 @@ public class EntregaAsistenciaModel {
 		super();
 	}
 
-	public EntregaAsistenciaModel(long id, Date fecha, Integer cantidadRaciones, Preparacion preparacion, VoluntarioModel voluntario, FamiliaModel familia) {
+	public EntregaAsistenciaModel(Long id, LocalDate fecha, Integer cantidadRaciones, Long idPreparacion, PreparacionModel preparacion, VoluntarioModel voluntario, Integer nroFamilia, FamiliaModel familia) {
 		this.id = id;
 		this.fecha = fecha;
 		this.cantidadRaciones = cantidadRaciones;
+		this.idPreparacion = idPreparacion;
 		this.preparacion = preparacion;
 		this.voluntario = voluntario;
+		this.nroFamilia = nroFamilia;
 		this.familia = familia;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 
@@ -65,11 +70,19 @@ public class EntregaAsistenciaModel {
 		this.cantidadRaciones = cantidadRaciones;
 	}
 
-	public Preparacion getPreparacion() {
+	public Long getIdPreparacion() {
+		return idPreparacion;
+	}
+
+	public void setIdPreparacion(Long idPreparacion) {
+		this.idPreparacion = idPreparacion;
+	}
+
+	public PreparacionModel getPreparacion() {
 		return preparacion;
 	}
 
-	public void setPreparacion(Preparacion preparacion) {
+	public void setPreparacion(PreparacionModel preparacion) {
 		this.preparacion = preparacion;
 	}
 
@@ -79,6 +92,14 @@ public class EntregaAsistenciaModel {
 
 	public void setVoluntario(VoluntarioModel voluntario) {
 		this.voluntario = voluntario;
+	}
+
+	public Integer getNroFamilia() {
+		return nroFamilia;
+	}
+
+	public void setNroFamilia(Integer nroFamilia) {
+		this.nroFamilia = nroFamilia;
 	}
 
 	public FamiliaModel getFamilia() {
