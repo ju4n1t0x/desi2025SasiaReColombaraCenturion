@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Familia</title>
+    <style>
+        /* Estilos básicos para la visualización de errores */
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 250px;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<h1>Formulario de Familia</h1>
+
+<div th:if="${mensaje}" style="color: green;">
+    <p th:text="${mensaje}"></p>
+</div>
+<div th:if="${error}" style="color: red;">
+    <p th:text="${error}"></p>
+</div>
+
+<form th:object="${familia}" th:action="${accion}" method="post">
+    <input type="hidden" th:field="*{nroFamilia}" />
+
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" th:field="*{nombre}" />
+        <p th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error-message"></p>
+    </div>
+
+<!--    <div class="form-group">-->
+<!--        <label for="fechaRegistro">Fecha de Registro:</label>-->
+<!--        <input type="date" id="fechaRegistro" th:field="*{fechaRegistro}" />-->
+<!--        <p th:if="${#fields.hasErrors('fechaRegistro')}" th:errors="*{fechaRegistro}" class="error-message"></p>-->
+<!--    </div>-->
+
+    <button type="submit">Guardar</button>
+</form>
+
+<a href="/familias">Volver</a>
+
+</body>
+</html>
