@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+          crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+            crossorigin="anonymous"></script>
+    <title>Alta Preparacion</title>
+</head>
+<body>
+	<th:block th:replace="~{fragments/navbar :: navBar}"></th:block>
+    <div class="container mt-4">
+        <h1>Preparaciones</h1>
+        <p>Formulario para agregar una prepración al cronograma</p>
+
+        <!-- Formulario de alta -->
+        <div id="main-content" class="container mt-4">
+            <h3>Plan de preparaciones</h3>
+            <p>Formulario para programar preparaciones</p>
+            <!-- CHEQUEAR LOS TYPES -->
+            <form>
+
+                <div class="mb-3">
+                    <label for="fechaPreparacion" class="form-label">Fecha programada de preparación</label>
+                    <!-- agregar calendario? -->
+                    <input class="form-control" id="fechaPreparacion">
+                </div>
+
+                <div class="mb-3">
+                    <!-- agregar for al select de recetas disponibles -->
+                    <label for="inputReceta" class="form-label">Receta a preparar</label>
+                    <select name="recetas" id="inputReceta">
+                        <option value="recetaUno">Receta 1</option>
+                        <option value="recetaDos">Receta 2</option>
+                        <option value="recetaTres">Receta 3</option>
+                        <option value="recetaCuatro">Receta 4</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="inputRaciones" class="form-label">Cantidad de raciones a preparar</label>
+                    <input class="form-control" id="inputRaciones">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Agregar</button>
+            </form>
+            </div>
+    </div>
+</body>
+</html>

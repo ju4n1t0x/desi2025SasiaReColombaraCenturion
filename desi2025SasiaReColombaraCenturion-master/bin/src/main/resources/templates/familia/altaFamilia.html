@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+		  integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+		  crossorigin="anonymous"/>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+			crossorigin="anonymous"></script>
+	<title>Alta Familia</title>
+</head>
+
+<body>
+	<th:block th:replace="~{fragments/navbar :: navBar}"></th:block>
+	<div id="main-content" class="container mt-4">
+		<h1>Alta de Familia</h1>
+		<p>Formulario para dar de alta una familia.</p>
+		<form>
+			<div class="mb-3">
+				<label for="exampleInputId" class="form-label">Numero de Familia</label>
+				<input type="id" class="form-control" id="exampleInputId">
+
+			</div>
+			<div class="mb-3">
+				<label for="exampleInputName" class="form-label">Nombre de la Familia</label>
+				<input type="name" class="form-control" id="exampleInputName">
+			</div>
+			<div class="mb-3">
+				<label for="exampleInputFechaRegistro" class="form-label">Fecha de Registro</label>
+				<input type="fechaRegistro" class="form-control" id="exampleInputFechaRegistro">
+			</div>
+			<div class="mb-3">
+				<label for="exampleInputIdAsistido" class="form-label">Cual es el asistido que desea asignar?</label>
+				<input type="idAsistido" class="form-control" id="exampleInputIdAsistido">
+			</div>
+			<button type="submit" class="btn btn-primary">Agregar</button>
+		</form>
+	</div>
+</body>
+
+</html>

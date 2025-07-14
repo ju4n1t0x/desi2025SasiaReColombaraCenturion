@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+          crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+            crossorigin="anonymous"></script>
+    <title>Listado de entregas realziadas</title>
+</head>
+<body>
+<header>
+	<th:block th:replace="~{fragments/navbar :: navBar}"></th:block>
+</header>
+<div id="main-content" class="container mt-4">
+         <h1>Listado de Entregas Realizadas</h1>
+    <section>
+        <form th:action="@{/entrega/listadoEntregas}" method="get" class="mb-4">
+                         <div class="row g-3 align-items-end">
+                             <div class="col-md-3">
+                                 <label for="fecha" class="form-label">Fecha:</label>
+                                  <input type="date" class="form-control" id="fecha" name="fecha" th:value="${param.fecha}"/>
+                             </div>
+                             <div class="col-md-3">
+                                  <label for="nroFamilia" class="form-label">Número de Familia:</label>
+                                  <input type="number" class="form-control" id="nroFamilia" name="nroFamilia" th:value="${param.nroFamilia}"/>
+                              </div>
+                              <div class="col-md-3">
+                                  <label for="nombreFamilia" class="form-label">Nombre de Familia:</label>
+                                  <input type="text" class="form-control" id="nombreFamilia" name="nombreFamilia" th:value="${param.nombreFamilia}"/>
+                              </div>
+                              <div class="col-md-3">
+                                  <button type="submit" class="btn btn-primary">Filtrar</button>
+                                 <a th:href="@{/entrega/listadoEntregas}" class="btn btn-secondary ms-2">Limpiar Filtros</a>
+                              </div>
+                          </div>
+                      </form>
+    </section>
+
+
+        <!-- Esta sección solo se mostrará si la lista 'entregas' NO está vacía -->
+         <section th:if="${!entregas.isEmpty()}">
+             <table class="table table-striped table-hover">
+                 <thead class="table-dark">
+                 <tr>
+                        <th scope="col">N° Familia</th>
+                         <th scope="col">Nombre de Familia</th>
+    <th scope="col">Preparación Entregada</th>
+                        <th scope="col">Raciones Entregadas</th>
+                         <th scope="col">Acciones</th> <!-- Nueva columna para los botones -->
+                    </tr>
+             </thead>
+                 <tbody>
+                <!-- Usamos th:each para crear una fila <tr> por cada 'entrega' en la lista 'entregas' -->
+                <tr th:each="entrega : ${entregas}">
+                         <td th:text="${entrega.familia.nroFamilia}"></td>
+                         <td th:text="${entrega.familia.nombre}"></td>
+                         <td th:text="${entrega.preparacion.receta.nombre}"></td>
+                         <td th:text="${entrega.cantidadRaciones}"></td>
+                         <td>
+                             <!-- Botón Eliminar: apunta a la URL /entrega/eliminar/{id} -->
+                             <a th:href="@{/entrega/eliminar/{id}(id=${entrega.id})}" class="btn btn-danger btn-md">Eliminar</a>
+                         </td>
+                    </tr>
+             </tbody>
+             </table>
+        </section>
+
+        <!-- Esta sección solo se mostrará si la lista 'entregas' ESTÁ vacía -->
+        <section th:if="${entregas.isEmpty()}">
+             <div class="alert alert-info" role="alert">
+                 No hay entregas registradas para mostrar.
+             </div>
+         </section>
+    </div>
+
+</body>
+</html>
