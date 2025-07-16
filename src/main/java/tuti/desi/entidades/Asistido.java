@@ -20,18 +20,19 @@ public class Asistido {
     @NotBlank(message = "El apellido del asistido no puede estar vacío")
     private String apellido;
 
-    @NotBlank(message = "El DNI del asistido no puede estar vacío")
+    @NotNull(message = "El DNI del asistido no puede estar vacío")
     @Column(unique = true)
-    private String dni;
+    private Integer dni;
 
     @NotNull(message = "La fecha de nacimiento no puede ser nula")
     private LocalDate fechaNacimiento;
 
-    // --- ¡CAMBIA ESTO A STRING! ---
     @NotBlank(message = "La ocupación no puede estar vacía")
     private String ocupacion;
-    // ----------------------------
-
+    
+    
+    private String domicilio;
+	
     @Column(nullable = false)
     private boolean activo = true;
 
@@ -43,18 +44,39 @@ public class Asistido {
     public Asistido() {
     }
 
-    public Asistido(Long id, String nombre, String apellido, String dni, LocalDate fechaNacimiento, String ocupacion, boolean activo, Familia familia) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.fechaNacimiento = fechaNacimiento;
-        this.ocupacion = ocupacion;
-        this.activo = activo;
-        this.familia = familia;
-    }
+    
+    
+    
+    public Asistido(Long id, @NotBlank(message = "El nombre del asistido no puede estar vacío") String nombre,
+			@NotBlank(message = "El apellido del asistido no puede estar vacío") String apellido,
+			@NotNull(message = "El DNI del asistido no puede estar vacío") Integer dni,
+			@NotNull(message = "La fecha de nacimiento no puede ser nula") LocalDate fechaNacimiento,
+			@NotBlank(message = "La ocupación no puede estar vacía") String ocupacion, String domicilio, boolean activo,
+			@NotNull(message = "El asistido debe pertenecer a una familia") Familia familia) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
+		this.fechaNacimiento = fechaNacimiento;
+		this.ocupacion = ocupacion;
+		this.domicilio = domicilio;
+		this.activo = activo;
+		this.familia = familia;
+	}
 
-    public Long getId() {
+
+
+
+	public String getDomicilio() {
+		return domicilio;
+	}
+
+	public void setDomicilio(String domicilio) {
+		this.domicilio = domicilio;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -78,11 +100,11 @@ public class Asistido {
         this.apellido = apellido;
     }
 
-    public String getDni() {
+    public Integer getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
+    public void setDni(Integer dni) {
         this.dni = dni;
     }
 
