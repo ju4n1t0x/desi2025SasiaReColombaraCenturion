@@ -1,5 +1,6 @@
 package tuti.desi.entidades;
 
+import java.sql.Date;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -8,97 +9,61 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 @Entity
 public class Familia {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "nro_familia")
-    private int nroFamilia;
-
-    @NotBlank(message = "El nombre de la familia no puede estar vacío")
-    @Column(unique = true)
-    private String nombre;
-
-    @Column(nullable = false)
-    private LocalDate fechaRegistro = LocalDate.now();
-
-    @Column(nullable = false)
-    private boolean activo = true;
+	private Integer nroFamilia;
+	
+	private String nombre;
+	private Date fechaRegistro;
 	
 	@OneToMany(mappedBy = "familia")
 	private List<EntregaAsistencia> entregaAsistencia;
 	
-	 @OneToMany(mappedBy = "familia", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Asistido> asistidos = new ArrayList<>();
-    
-    public long getCantidadIntegrantesActivos() {
-        if (asistidos == null) {
-            return 0;
-        }
-        return asistidos.stream()
-                .filter(Asistido::isActivo)
-                .count();
-    }
-	
-	public Familia() {
-    }
-	
-	public Familia(int nroFamilia, String nombre, LocalDate fechaRegistro, boolean activo, List<Asistido> asistidos) {
-        this.nroFamilia = nroFamilia;
-        this.nombre = nombre;
-        this.fechaRegistro = fechaRegistro;
-        this.activo = activo;
-        this.asistidos = asistidos;
-    }
+	@OneToMany(mappedBy = "familia")
+	private List<Asistido> asistido;
 
-	 public int getNroFamilia() {
-	        return nroFamilia;
-	    }
+	public Integer getNroFamilia() {
+		return nroFamilia;
+	}
 
-	    public void setNroFamilia(int nroFamilia) {
-	        this.nroFamilia = nroFamilia;
-	    }
+	public void setNroFamilia(Integer nroFamilia) {
+		this.nroFamilia = nroFamilia;
+	}
 
-	    public String getNombre() {
-	        return nombre;
-	    }
+	public String getNombre() {
+		return nombre;
+	}
 
-	    public void setNombre(String nombre) {
-	        this.nombre = nombre;
-	    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-	    public LocalDate getFechaRegistro() {
-	        return fechaRegistro;
-	    }
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
 
-	    public void setFechaRegistro(LocalDate fechaRegistro) {
-	        this.fechaRegistro = fechaRegistro;
-	    }
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
 
-	    public boolean isActivo() {
-	        return activo;
-	    }
+	public List<EntregaAsistencia> getEntregaAsistencia() {
+		return entregaAsistencia;
+	}
 
-	    public void setActivo(boolean activo) {
-	        this.activo = activo;
-	    }
+	public void setEntregaAsistencia(List<EntregaAsistencia> entregaAsistencia) {
+		this.entregaAsistencia = entregaAsistencia;
+	}
 
-	    public List<Asistido> getAsistidos() {
-	        return asistidos;
-	    }
+	public List<Asistido> getAsistido() {
+		return asistido;
+	}
 
-	    public void setAsistidos(List<Asistido> asistidos) {
-	        this.asistidos = asistidos;
-	    }
-	    
-
+	public void setAsistido(List<Asistido> asistido) {
+		this.asistido = asistido;
+	}
 	
 	
 }

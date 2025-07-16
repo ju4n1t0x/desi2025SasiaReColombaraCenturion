@@ -1,92 +1,58 @@
 package tuti.desi.services.asistido;
 
-import tuti.desi.entidades.*;
-import tuti.desi.dao.*;
+import java.sql.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
+import tuti.desi.dao.IAsistidoRepo;
+import tuti.desi.entidades.Asistido;
+import tuti.desi.entidades.Familia;
 
 @Service
-public class AsistidoService implements IAsistidoService {
+public class AsistidoService implements IAsistidoService{
 
-    @Autowired
-    private IAsistidoRepo IAsistidoRepo;
+	@Autowired
+	private IAsistidoRepo asistidoRepo;
+	
+	@Override
+	public List<Asistido> getAll() {
+		List<Asistido> listaAsistidos = asistidoRepo.findAll();
+		return listaAsistidos;
+	}
 
-    @Override
-    public List<Asistido> obtenerTodosAsistidosActivos() { 
-        return IAsistidoRepo.findByActivoTrue();
-    }
+	@Override
+	public void saveAsistido(Asistido asistido) {
+		asistidoRepo.save(asistido);
+		
+	}
 
-    @Override
-    public List<Asistido> obtenerAsistidosActivosPorFamilia(Familia familia) { 
-        return IAsistidoRepo.findByFamiliaAndActivoTrue(familia);
-    }
+	@Override
+	public void deleteAsistido(Long id) {
+		asistidoRepo.deleteById(id);
+		
+	}
 
-    @Override
-    public Optional<Asistido> obtenerAsistidoPorId(int id) { 
-       
-        return IAsistidoRepo.findByIdAndActivoTrue(id);
-    }
-
-    @Override
-    public Asistido crearAsistido(Asistido asistido) {
-        if (asistido.getDomicilio() == null || asistido.getDomicilio().trim().isEmpty()) {
-           asistido.setDomicilio("Domicilio no especificado");
-         }
-        asistido.setActivo(true); 
-        return IAsistidoRepo.save(asistido);
-    }
-
-    @Override
-    public Asistido actualizarAsistido(int id, Asistido asistidoDetalles) { 
-        Optional<Asistido> asistidoExistenteOptional = IAsistidoRepo.findById(id);
-        if (asistidoExistenteOptional.isPresent()) {
-            Asistido asistidoExistente = asistidoExistenteOptional.get();
-            
-            asistidoExistente.setNombre(asistidoDetalles.getNombre());
-            asistidoExistente.setApellido(asistidoDetalles.getApellido());
-            asistidoExistente.setFechaNacimiento(asistidoDetalles.getFechaNacimiento()); 
-            asistidoExistente.setDni(asistidoDetalles.getDni());
-            asistidoExistente.setOcupacion(asistidoDetalles.getOcupacion());
-            
-            return IAsistidoRepo.save(asistidoExistente);
-        } else {
-            throw new RuntimeException("Asistido con ID " + id + " no encontrado para actualizar.");
-        }
-    }
-
-    @Override
-    public void eliminarAsistido(int id) { 
-        Optional<Asistido> asistidoOptional = IAsistidoRepo.findById(id);
-        if (asistidoOptional.isPresent()) {
-            Asistido asistido = asistidoOptional.get();
-            asistido.setActivo(false);
-            IAsistidoRepo.save(asistido);
-            System.out.println("Se realizó eliminación lógica del asistido con id: " + id);
-        } else {
-            throw new RuntimeException("Asistido con ID " + id + " no encontrado para eliminación lógica.");
-        }
-    }
-
-    
-
-    public Asistido reactivarAsistido(int id) { 
-        Optional<Asistido> asistidoOptional = IAsistidoRepo.findById(id);
-        if (asistidoOptional.isPresent()) {
-            Asistido asistido = asistidoOptional.get();
-            asistido.setActivo(true);
-            return IAsistidoRepo.save(asistido);
-        }
-        return null;
-    }
-
-    public List<Asistido> obtenerAsistidosInactivos() {
-        return IAsistidoRepo.findByActivoFalse();
-    }
-
-    public List<Asistido> obtenerAsistidosInactivosPorFamilia(Familia familia) {
-        return IAsistidoRepo.findByFamiliaAndActivoFalse(familia);
-    }
+	@Override
+	public Asistido findAsistido(Long Id) {
+		Asistido asis = asistidoRepo.findById(Id).orElse(null);
+		return asis;
+	}
+	
+	@Override
+	public void editAsistido(Long idOriginal, Integer nuevoDni, String nuevoDomicilio, String nuevoNombre, String nuevoApellido, Date nuevaFechaNac, String nuevaOcupacion, Date nuevaFechaReg, Familia nuevaFamilia) {
+		Asistido asis = this.findAsistido(idOriginal);
+		asis.setDni(nuevoDni);
+		asis.setApellido(nuevoApellido);
+		asis.setNombre(nuevoNombre);
+		asis.setDomicilio(nuevoDomicilio);
+		asis.setFechaNacimiento(nuevaFechaNac);
+		asis.setOcupacion(nuevaOcupacion);
+		asis.setFechaRegistro(nuevaFechaReg);
+		asis.setFamilia(nuevaFamilia);
+		
+		
+		
+	}
+	
 }
