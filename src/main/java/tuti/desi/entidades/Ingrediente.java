@@ -18,8 +18,7 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo_ingrediente", discriminatorType = DiscriminatorType.STRING) 
-@DiscriminatorValue("INGREDIENTE")
+@DiscriminatorColumn(name = "tipo_ingrediente", discriminatorType = DiscriminatorType.STRING)
 public class Ingrediente {
    
 	@Id

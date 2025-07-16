@@ -30,8 +30,22 @@ public interface IPreparacionRepo extends JpaRepository<Preparacion, Long> {
     @Query("SELECT p FROM Preparacion p WHERE p.fechaCoccion = CURRENT_DATE AND p.stockRacionesRestantes > 0 AND p.activo = true")
     List<Preparacion> findPreparacionesDelDiaConStock();
 
-    //Verificar si ya existe una preparacion de la misma receta en el mismo dia
-    //@Query("SELECT p FROM Preparacion p WHERE p.receta_id = :recetaId AND p.fecha_coccion = :fechaCoccion AND p.activo = true")
-    //Optional<Preparacion> findByRecetaIdAndFechaAndActivoTrue(@Param("recetaId") Long recetaId, @Param("fecha") Date fechaCoccion);
+    // ===== CONSULTAS BÁSICAS =====
+    List<Preparacion> findByActivoTrue();
+
+    List<Preparacion> findByActivoFalse();
+
+    // BUSCAR POR FECHA
+    List<Preparacion> findByFechaCoccionAndActivoTrue(Date fechaCoccion);
+
+    List<Preparacion> findByFechaCoccionBetweenAndActivoTrue(Date fechaInicio, Date fechaFin);
+
+    List<Preparacion> findByRecetaNombreContainingIgnoreCaseAndActivoTrue(String nombreReceta);
+
+    // BUSCAR POR STOCK
+    //List<Preparacion> findByStockRacionesRestantesGreaterThanAndActivoTrue(Integer cantidad);
+
+    //List<Preparacion> findByStockRacionesRestantesEqualsAndActivoTrue(Integer cantidad);
+
 
 }

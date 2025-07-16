@@ -13,13 +13,16 @@ public interface IPreparacionService {
 
 	public PreparacionModel convertToModel(Preparacion preparacion);
 
-	public PreparacionModel save(PreparacionModel preparacionModel);
-	
+	PreparacionModel save(PreparacionModel preparacionModel);
+
 	public void deletePreparacionModel(Long id);
-	
+
 	public PreparacionModel findPreparacion(Long id);
-	
+
 	public void editPreparacion(PreparacionModel preparacionModel);
 
 	List<PreparacionModel> findPreparacionesDelDiaConStock();
+
+	List<Preparacion> findByFechaCoccionAndActivoTrue(Date fecha);
 }
+

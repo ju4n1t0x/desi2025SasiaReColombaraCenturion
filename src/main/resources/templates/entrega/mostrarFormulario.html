@@ -39,7 +39,7 @@
 				<select class="form-select" id="preparacionSelected" th:field="*{idPreparacion}"
 						th:classappend="${#fields.hasErrors('idPreparacion') ? 'is-invalid' : ''}">
 					<option value="" selected>Seleccione una preparacion</option>
-					<option th:each="preparacion : ${preparaciones}" th:value="${preparacion.id}" th:text="${'Id preparacion:' + preparacion.id + ' / nombre de la preapracion:  ' + preparacion.receta.nombre  + ' / cantidad en stock: '+ preparacion.stockRacionesRestantes}"></option>
+					<option th:each="preparacion : ${preparacion}" th:value="${preparacion.id}" th:text="${'Id preparacion:' + preparacion.id + ' / nombre de la preapracion:  ' + preparacion.receta.nombre  + ' / cantidad en stock: '+ preparacion.stockRacionesRestantes}"></option>
 				</select>
 				<div class="invalid-feedback" th:if="${#fields.hasErrors('idPreparacion')}" th:errors="*{idPreparacion}"></div>
 			</div>

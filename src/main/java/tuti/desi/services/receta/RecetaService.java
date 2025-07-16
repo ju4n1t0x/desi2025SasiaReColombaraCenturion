@@ -9,25 +9,12 @@ import tuti.desi.dao.IRecetaRepo;
 import tuti.desi.entidades.ItemReceta;
 import tuti.desi.entidades.Preparacion;
 import tuti.desi.entidades.Receta;
-import tuti.desi.presentacion.models.RecetaModel;
-import tuti.desi.services.transform.Transformator;
-import tuti.desi.services.transform.TransformatorToList;
 
 @Service
 public class RecetaService implements IRecetaService{
 
 	@Autowired
 	private IRecetaRepo recetaRepo;
-
-	//@Autowired
-	//private Transformator transformator;
-
-	//@Autowired
-	//TransformatorToList transformatorToList;
-
-	//RecetaModel recetaModel = transformator.transform(Receta);
-
-	//List<RecetaModel> recetasModel = transformatorToList(IRecetaRepo);
 
 	@Override
 	public List<Receta> getAll() {
@@ -61,9 +48,5 @@ public class RecetaService implements IRecetaService{
 		rece.setPreparaciones(nuevasPreparaciones);
 		
 	}
-
-
-
-
 
 }

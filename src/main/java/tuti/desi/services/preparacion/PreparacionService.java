@@ -1,24 +1,26 @@
 package tuti.desi.services.preparacion;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tuti.desi.dao.IPreparacionRepo;
-import tuti.desi.entidades.EntregaAsistencia;
 import tuti.desi.entidades.Preparacion;
 import tuti.desi.entidades.Receta;
-import tuti.desi.presentacion.models.EntregaAsistenciaModel;
 import tuti.desi.presentacion.models.PreparacionModel;
-import tuti.desi.presentacion.models.RecetaModel;
+import tuti.desi.services.receta.RecetaService;
 
 @Service
 public class PreparacionService implements IPreparacionService {
 
     @Autowired
     private IPreparacionRepo preparacionRepo;
+
+    @Autowired
+    private RecetaService recetaService;
+
     @Autowired
     private ModelMapper modelMapper;
 
@@ -35,8 +37,16 @@ public class PreparacionService implements IPreparacionService {
 
     @Override
     public PreparacionModel save(PreparacionModel preparacionModel){
+
         Preparacion preparacion = modelMapper.map(preparacionModel, Preparacion.class);
+
+        if (preparacionModel.getRecetaId() != null) {
+            Receta receta = recetaService.findReceta(preparacionModel.getRecetaId());
+            preparacion.setReceta(receta);
+        }
         Preparacion preparacionGuardada = preparacionRepo.save(preparacion);
+
+        System.out.println(preparacion);
         return modelMapper.map(preparacionGuardada, PreparacionModel.class);
     }
 
@@ -59,16 +69,20 @@ public class PreparacionService implements IPreparacionService {
         Preparacion preparacion = preparacionRepo.findById(preparacionModel.getId())
                 .orElseThrow(() -> new RuntimeException("Preparacion no encontrada"));
         preparacion.setId(preparacionModel.getId());
-        preparacion.setReceta(modelMapper.map(preparacionModel.getReceta(), Receta.class));
+        preparacion.setReceta(modelMapper.map(preparacionModel.getRecetaId(), Receta.class));
         preparacion.setFechaCoccion(preparacionModel.getFechaCoccion());
         preparacionRepo.save(preparacion);
 
     }
 
+    @Override
+    public List<Preparacion> findByFechaCoccionAndActivoTrue(java.sql.Date fecha){
+        return preparacionRepo.findByFechaCoccionAndActivoTrue(fecha);
+    }
+
     public List<PreparacionModel> findPreparacionesDelDiaConStock(){
-    List<Preparacion> listaPreparacionesDelDiaConStock = preparacionRepo.findPreparacionesDelDiaConStock();
-    return modelMapper.map(listaPreparacionesDelDiaConStock, List.class);}
-
-
+        List<Preparacion> listaPreparacionesDelDiaConStock = preparacionRepo.findPreparacionesDelDiaConStock();
+        return modelMapper.map(listaPreparacionesDelDiaConStock, List.class);
+    }
 
 }

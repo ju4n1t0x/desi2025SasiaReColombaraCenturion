@@ -10,7 +10,7 @@ public class Preparacion {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	@Column(name = "total_raciones_preparadas", nullable = false)
 	private Integer totalRacionesPreparadas;
@@ -31,10 +31,20 @@ public class Preparacion {
 	@OneToMany(mappedBy = "preparacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<EntregaAsistencia> entregaAsistencia;
 
-	public long getId() {
+	public Preparacion() {}
+
+	public Preparacion(Integer totalRacionesPreparadas, Date fechaCoccion, Receta receta) {
+		this.totalRacionesPreparadas = totalRacionesPreparadas;
+		this.stockRacionesRestantes = totalRacionesPreparadas; // Lógica inicial
+		this.fechaCoccion = fechaCoccion;
+		this.receta = receta;
+		this.activo = true; // Valor por defecto
+	}
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -79,4 +89,36 @@ public class Preparacion {
 		this.entregaAsistencia = entregaAsistencia;
 	}
 
+	public Long getRecetaId() {
+		return receta != null ? receta.getId() : null;
+	}
+
+	public Integer getCaloriasPorPlato() {
+		return receta != null ? receta.getCaloriasTotales() : 0;
+	}
+
+	public void consumirRaciones(Integer cantidad) {
+		if (cantidad <= stockRacionesRestantes) {
+			this.stockRacionesRestantes -= cantidad;
+		} else {
+			throw new IllegalArgumentException("No hay suficientes raciones disponibles");
+		}
+	}
+
+	public boolean hayStock() {
+		return stockRacionesRestantes != null && stockRacionesRestantes > 0;
+	}
+
+	@Override
+	public String toString() {
+		return "Preparacion{" +
+				"id=" + id +
+				", totalRacionesPreparadas=" + totalRacionesPreparadas +
+				", stockRacionesRestantes=" + stockRacionesRestantes +
+				", fechaCoccion=" + fechaCoccion +
+				", receta=" + receta +
+				", activo=" + activo +
+				", entregaAsistencia=" + entregaAsistencia +
+				'}';
+	}
 }

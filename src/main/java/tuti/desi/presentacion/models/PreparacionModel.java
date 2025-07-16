@@ -1,20 +1,16 @@
 package tuti.desi.presentacion.models;
 
 import java.sql.Date;
-import java.util.List;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Positive;
-import tuti.desi.entidades.EntregaAsistencia;
-import tuti.desi.entidades.Receta;
+import jakarta.validation.constraints.*;
 
 public class PreparacionModel {
 
-	private long id;
+	private Long id;
 
 	@NotNull(message = "La cantidad de raciones es obligatoria")
-	@Positive(message = "La cantidad debe ser positiva")
+	@Min(value = 1, message = "Debe preparar al menos 1 ración")
+	@Max(value = 999, message = "No puede preparar más de 999 raciones")
 	private Integer totalRacionesPreparadas;
 
 	private Integer stockRacionesRestantes;
@@ -24,31 +20,25 @@ public class PreparacionModel {
 	private Date fechaCoccion;
 
 	@NotNull(message = "La receta es obligatoria")
-	private Receta receta;
-	
-	private List<EntregaAsistenciaModel> entregaAsistencia;
+	@Min(value = 1, message = "Debe seleccionar una receta válida")
+	private Long recetaId;
+
+	private RecetaModel receta;
+
+	private Boolean activo = true;
+
 
 	public PreparacionModel() {
-		super();
 	}
 
-	public PreparacionModel(long id, Integer totalRacionesPreparadas, Integer stockRacionesRestantes, Date fechaCoccion,
-			Receta receta, List<EntregaAsistenciaModel> entregaAsistencia) {
-		super();
-		this.id = id;
+	public PreparacionModel(Integer totalRacionesPreparadas, Date fechaCoccion,
+			Long recetaId, RecetaModel receta) {
 		this.totalRacionesPreparadas = totalRacionesPreparadas;
-		this.stockRacionesRestantes = stockRacionesRestantes;
+		this.stockRacionesRestantes = totalRacionesPreparadas;
 		this.fechaCoccion = fechaCoccion;
+		this.recetaId = recetaId;
 		this.receta = receta;
-		this.entregaAsistencia = entregaAsistencia;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
+		this.activo = true;
 	}
 
 	public Integer getTotalRacionesPreparadas() {
@@ -75,20 +65,40 @@ public class PreparacionModel {
 		this.fechaCoccion = fechaCoccion;
 	}
 
-	public Receta getReceta() {
+	public Long getRecetaId() {
+		return recetaId;
+	}
+
+	public void setRecetaId(Long recetaId) {
+		this.recetaId = recetaId;
+	}
+
+	public RecetaModel getReceta() {
 		return receta;
 	}
 
-	public void setReceta(Receta receta) {
+	public void setReceta(RecetaModel receta) {
 		this.receta = receta;
 	}
 
-	public List<EntregaAsistenciaModel> getEntregaAsistencia() {
-		return entregaAsistencia;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setEntregaAsistencia(List<EntregaAsistenciaModel> entregaAsistencia) {
-		this.entregaAsistencia = entregaAsistencia;
-	}
+	public Boolean getActivo() { return activo; }
+	public void setActivo(Boolean activo) { this.activo = activo; }
 
+	@Override
+	public String toString() {
+		return "PreparacionModel{" +
+				"id=" + id +
+				", totalRacionesPreparadas=" + totalRacionesPreparadas +
+				", stockRacionesRestantes=" + stockRacionesRestantes +
+				", fechaCoccion=" + fechaCoccion +
+				", recetaId=" + recetaId +
+				'}';
+	}
 }

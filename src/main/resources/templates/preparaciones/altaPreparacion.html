@@ -14,39 +14,81 @@
 	<th:block th:replace="~{fragments/navbar :: navBar}"></th:block>
     <div class="container mt-4">
         <h1>Preparaciones</h1>
-        <p>Formulario para agregar una prepración al cronograma</p>
+        <p>Formulario para agregar una preparación al cronograma</p>
+
+        <!-- Mensajes de éxito o error -->
+        <div th:if="${mensaje}" class="alert" th:classappend="'alert-' + ${tipoMensaje}" role="alert">
+            <span th:text="${mensaje}"></span>
+        </div>
 
         <!-- Formulario de alta -->
-        <div id="main-content" class="container mt-4">
-            <h3>Plan de preparaciones</h3>
-            <p>Formulario para programar preparaciones</p>
-            <!-- CHEQUEAR LOS TYPES -->
-            <form>
+        <div class="container mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Nueva Preparación</h4>
+                    <hr/>
+                    <form th:action="@{/preparaciones/altaPreparacion}"
+                          th:object="${preparacion}"
+                          method="POST">
+                        <!-- Fecha coccion -->
+                        <div class="mb-3">
+                            <label for="fechaCoccion">Fecha Cocción <span class="text-danger">*</span></label>
+                            <input  id="fechaCoccion"
+                                    th:field="*{fechaCoccion}"
+                                    th:classappend="${#fields.hasErrors('fechaCoccion')} ? 'is-invalid' : ''"
+                                    type="date" required="required" class="form-control">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('fechaCoccion')}"
+                                 th:errors="*{fechaCoccion}"></div>
+                        </div>
 
-                <div class="mb-3">
-                    <label for="fechaPreparacion" class="form-label">Fecha programada de preparación</label>
-                    <!-- agregar calendario? -->
-                    <input class="form-control" id="fechaPreparacion">
-                </div>
+                        <!-- Seleccionar receta -->
+                        <div class="mb-3">
+                            <label for="recetaId" class="form-label">
+                                Receta <span class="text-danger">*</span>
+                            </label>
+                            <select id="recetaId"
+                                    th:field="*{recetaId}"
+                                    th:classappend="${#fields.hasErrors('recetaId')} ? 'is-invalid' : ''"
+                                    class="form-select"
+                                    required>
+                                <option value="">Seleccione una receta</option>
+                                <option th:each="receta : ${recetas}"
+                                        th:value="${receta.id}"
+                                        th:text="${receta.nombre + ' (' + receta.caloriasTotales + ' cal)'}">
+                                </option>
+                            </select>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('recetaId')}"
+                                 th:errors="*{recetaId}"></div>
+                        </div>
 
-                <div class="mb-3">
-                    <!-- agregar for al select de recetas disponibles -->
-                    <label for="inputReceta" class="form-label">Receta a preparar</label>
-                    <select name="recetas" id="inputReceta">
-                        <option value="recetaUno">Receta 1</option>
-                        <option value="recetaDos">Receta 2</option>
-                        <option value="recetaTres">Receta 3</option>
-                        <option value="recetaCuatro">Receta 4</option>
-                    </select>
+                        <!-- Definir raciones a preparar -->
+                        <div class="mb-3">
+                            <label for="numeroRaciones" class="form-label">Número de raciones a preparar <span class="text-danger">*</span></label>
+                            <input type="number"
+                                   id="numeroRaciones"
+                                   th:field="*{totalRacionesPreparadas}"
+                                   th:classappend="${#fields.hasErrors('totalRacionesPreparadas')} ? 'is-invalid' : ''"
+                                   min="1"
+                                   max="999"
+                                   required="required"
+                                   class="form-control">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('totalRacionesPreparadas')}"
+                                 th:errors="*{totalRacionesPreparadas}"></div>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Guardar Preparación
+                            </button>
+                            <a th:href="@{/preparaciones}" class="btn btn-secondary ms-2">
+                                <i class="fas fa-times"></i> Cancelar
+                            </a>
+                        </div>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label for="inputRaciones" class="form-label">Cantidad de raciones a preparar</label>
-                    <input class="form-control" id="inputRaciones">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Agregar</button>
-            </form>
             </div>
+        </div>
+
+
     </div>
 </body>
 </html>

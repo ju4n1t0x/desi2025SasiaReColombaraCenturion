@@ -4,7 +4,7 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("PRODUCTO")
+@DiscriminatorValue("producto")
 public class Producto extends Ingrediente{
 
 	
