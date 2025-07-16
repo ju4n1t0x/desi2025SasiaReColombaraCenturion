@@ -29,9 +29,8 @@ public class PreparacionService implements IPreparacionService {
 
     @Override
     public List<PreparacionModel> getAll() {
-        List<Preparacion> listaPreparaciones = preparacionRepo.findAll();
+        List<Preparacion> listaPreparaciones = preparacionRepo.findByActivoTrueOrderByFechaCoccion();
         return modelMapper.map(listaPreparaciones, List.class);
-                
     }
 
     @Override

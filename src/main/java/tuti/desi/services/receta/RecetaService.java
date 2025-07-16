@@ -32,14 +32,12 @@ public class RecetaService implements IRecetaService{
 	@Override
 	public List<Receta> getAll() {
 		List<Receta> listaRecetas = recetaRepo.findAll();
-
 		return listaRecetas;
 	}
 
 	@Override
 	public void saveReceta(Receta receta) {
 		recetaRepo.save(receta);
-		
 	}
 
 	@Override

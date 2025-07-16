@@ -27,5 +27,4 @@ public interface IEntregaAsistenciaRepo extends JpaRepository<EntregaAsistencia,
 	"AND (:nombreFamilia IS NULL OR LOWER(f.nombre) LIKE LOWER(CONCAT('%', :nombreFamilia, '%')))")
 	List<EntregaAsistencia> findByFechaAndFamiliaNroFamiliaAndFamiliaNombre(LocalDate fecha, Long nroFamilia, String nombreFamilia);
 
-
 }

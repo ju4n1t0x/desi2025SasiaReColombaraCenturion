@@ -54,32 +54,5 @@ public class HomeController {
     public String listadoReceta() {
     	return "receta/listadoReceta";
     }
-    
-    //PREPARACION
-    @GetMapping("/preparaciones/altaPreparacion")
-    public String altaPreparacion() {
-        return "preparaciones/altaPreparacion";
-    }
-
-    @GetMapping("/preparaciones/eliminacionPreparacion")
-    public String eliminacionPreparacion() {
-        return "preparaciones/eliminacionPreparacion";
-    }
-
-    @GetMapping("/preparaciones/modificacionPreparacion")
-    public String modificacionPreparacion() {
-        return "preparaciones/modificacionPreparacion";
-    }
-
-    @GetMapping("/preparaciones/listadoPreparacion")
-    public String listadoPrepracion() {
-        return "preparaciones/listadoPreparacion";
-    }
-    
-    //Entrega
-    
-    
-
-    
 
 }

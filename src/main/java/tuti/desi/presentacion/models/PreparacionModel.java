@@ -3,16 +3,27 @@ package tuti.desi.presentacion.models;
 import java.sql.Date;
 import java.util.List;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
 import tuti.desi.entidades.EntregaAsistencia;
 import tuti.desi.entidades.Receta;
 
 public class PreparacionModel {
 
 	private long id;
+
+	@NotNull(message = "La cantidad de raciones es obligatoria")
+	@Positive(message = "La cantidad debe ser positiva")
 	private Integer totalRacionesPreparadas;
+
 	private Integer stockRacionesRestantes;
+
+	@NotNull(message = "La fecha es obligatoria")
+	@PastOrPresent(message = "La fecha no puede ser futura")
 	private Date fechaCoccion;
-	
+
+	@NotNull(message = "La receta es obligatoria")
 	private Receta receta;
 	
 	private List<EntregaAsistenciaModel> entregaAsistencia;
@@ -79,6 +90,5 @@ public class PreparacionModel {
 	public void setEntregaAsistencia(List<EntregaAsistenciaModel> entregaAsistencia) {
 		this.entregaAsistencia = entregaAsistencia;
 	}
-	
-	
+
 }
