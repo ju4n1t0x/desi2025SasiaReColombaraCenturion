@@ -32,6 +32,9 @@ public class AsistidoService implements IAsistidoService {
 
     @Override
     public Asistido crearAsistido(Asistido asistido) {
+        if (asistido.getDomicilio() == null || asistido.getDomicilio().trim().isEmpty()) {
+           asistido.setDomicilio("Domicilio no especificado");
+         }
         asistido.setActivo(true); 
         return IAsistidoRepo.save(asistido);
     }
