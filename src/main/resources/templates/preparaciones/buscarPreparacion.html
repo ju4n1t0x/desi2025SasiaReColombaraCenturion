@@ -14,7 +14,29 @@
 	<th:block th:replace="~{fragments/navbar :: navBar}"></th:block>
     <div id="main-content" class="container mt-4">
         <h1>Listado de Preparaciones</h1>
-
+            <div class="container-fluid mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="/preparaciones/altaPreparacion" class="btn btn-success btn-sm">Agregar preparación</a>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Fecha Cocción</th>
+                                <th>Receta</th>
+                                <th>Raciones preparadas</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="preparacion: ${preparacion}">
+                                <td th:text="${preparacion.fechaCoccion}"></td>
+                                <td th:text="${preparacion.receta.nombre}"></td>
+                                <td th:text="${preparacion.totalRacionesPreparadas}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
     </div>
 </body>
 </html>

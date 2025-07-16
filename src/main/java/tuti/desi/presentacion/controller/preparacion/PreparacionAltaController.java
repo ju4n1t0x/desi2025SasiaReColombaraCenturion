@@ -27,7 +27,6 @@ public class PreparacionAltaController {
     public String altaPreparacion(Model model) {
         // Crear nuevo model para el formulario
         model.addAttribute("preparacion", new PreparacionModel());
-
         return "preparaciones/altaPreparacion";
     }
 }

@@ -14,39 +14,34 @@
 	<th:block th:replace="~{fragments/navbar :: navBar}"></th:block>
     <div class="container mt-4">
         <h1>Preparaciones</h1>
-        <p>Formulario para agregar una prepración al cronograma</p>
+        <p>Formulario para agregar una preparación al cronograma</p>
 
         <!-- Formulario de alta -->
-        <div id="main-content" class="container mt-4">
-            <h3>Plan de preparaciones</h3>
-            <p>Formulario para programar preparaciones</p>
-            <!-- CHEQUEAR LOS TYPES -->
-            <form>
+        <div class="container mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Nueva Preparación</h4>
+                    <hr/>
+                    <form>
+                        <div class="mb-3">
+                            <label>Fecha Cocción</label>
+                            <input type="date" required="required" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label>Receta</label>
+                            <select class="form-select" th:field>
 
-                <div class="mb-3">
-                    <label for="fechaPreparacion" class="form-label">Fecha programada de preparación</label>
-                    <!-- agregar calendario? -->
-                    <input class="form-control" id="fechaPreparacion">
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label>Número de raciones a preparar</label>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="mb-3">
-                    <!-- agregar for al select de recetas disponibles -->
-                    <label for="inputReceta" class="form-label">Receta a preparar</label>
-                    <select name="recetas" id="inputReceta">
-                        <option value="recetaUno">Receta 1</option>
-                        <option value="recetaDos">Receta 2</option>
-                        <option value="recetaTres">Receta 3</option>
-                        <option value="recetaCuatro">Receta 4</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="inputRaciones" class="form-label">Cantidad de raciones a preparar</label>
-                    <input class="form-control" id="inputRaciones">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Agregar</button>
-            </form>
             </div>
+        </div>
+
+
     </div>
 </body>
 </html>
