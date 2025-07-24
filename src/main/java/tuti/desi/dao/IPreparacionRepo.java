@@ -17,14 +17,7 @@ public interface IPreparacionRepo extends JpaRepository<Preparacion, Long> {
     // Obtener preparaciones activas
     List<Preparacion> findByActivoTrueOrderByFechaCoccion();
 
-    // Obtener preparaciones del día actual
-    @Query("SELECT p FROM Preparacion p WHERE p.fechaCoccion = CURRENT_DATE AND p.activo = true")
-    List<Preparacion> findPreparacionesDelDia();
 
-    // Obtener preparaciones con stock disponible
-    @EntityGraph(attributePaths = {"receta"})
-    @Query("SELECT p FROM Preparacion p WHERE p.fechaCoccion = CURRENT_DATE AND p.stockRacionesRestantes > 0 AND p.activo = true")
-    List<Preparacion> findPreparacionesConStock();
     
     // Obtener preparaciones del día con stock
     @Query("SELECT p FROM Preparacion p WHERE p.fechaCoccion = CURRENT_DATE AND p.stockRacionesRestantes > 0 AND p.activo = true")

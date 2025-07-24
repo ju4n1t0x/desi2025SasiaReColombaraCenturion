@@ -83,6 +83,7 @@ public class EntregaAsistenciaController {
 
     private void cargarDatosParaFormulario(Model model){
         List<PreparacionModel> preparacionesDelDiaConStock = preparacionService.findPreparacionesDelDiaConStock();
+        System.out.println("numero de preparaciones encontradas para hoy con stock: " + preparacionesDelDiaConStock.size());
         model.addAttribute("preparaciones", preparacionesDelDiaConStock);
 
         // Obtener todas las familias a través del service
