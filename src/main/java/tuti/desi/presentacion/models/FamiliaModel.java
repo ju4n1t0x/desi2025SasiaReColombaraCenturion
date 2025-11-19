@@ -1,6 +1,7 @@
 package tuti.desi.presentacion.models;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,6 +20,10 @@ public class FamiliaModel {
 
 	public FamiliaModel() {
 		super();
+
+        this.asistido = new ArrayList<>();
+
+        this.entregaAistencia = new ArrayList<>();
 	}
 
 	public FamiliaModel(Integer nroFamilia, String nombre, Date fechaRegistro, List<EntregaAsistenciaModel> entregaAistencia,

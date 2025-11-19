@@ -12,26 +12,6 @@ public class HomeController {
     public String index() {
         return "index";
     }
-
-    @GetMapping("/familia/altaFamilia")
-    public String altaFamilia() {
-        return "familia/altaFamilia";
-    }
-
-    @GetMapping("/familia/eliminacionFamilia")
-    public String eliminacionFamilia() {
-        return "familia/eliminacionFamilia";
-    }
-
-    @GetMapping("/familia/modificacionFamilia")
-    public String modificacionFamilia() {
-        return "familia/modificacionFamilia";
-    }
-
-    @GetMapping("/familia/listadoFamilia")
-    public String listadoFamilia() {
-        return "familia/listadoFamilia";
-    }
     
     
     //receta

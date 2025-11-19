@@ -1,6 +1,7 @@
 package tuti.desi.services.familia;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +34,10 @@ public class FamiliaService implements IFamiliaService{
 		familiaRepo.save(familia);
 		
 	}
+    @Override
+    public Familia getFamiliaById(Integer nroFamilia) {
+        return familiaRepo.findById(nroFamilia).orElse(null);
+    }
 
 	@Override
 	public void deleteFamilia(Integer nroFamilia) {
@@ -51,16 +56,22 @@ public class FamiliaService implements IFamiliaService{
 
 	@Override
 	public void editFamilia(FamiliaModel familiaModel) {
-		Familia familia = familiaRepo.findById(familiaModel.getNroFamilia())
-				.orElseThrow(() -> new RuntimeException("Familia no encontrada"));
-		familia.setNombre(familiaModel.getNombre());
-		familia.setFechaRegistro(familiaModel.getFechaRegistro());
-		// Si necesitas mapear la lista de asistidos del modelo a entidades:
-		List<Asistido> asistidos = familiaModel.getAsistido().stream()
-				.map(asistidoModel -> modelMapper.map(asistidoModel, Asistido.class))
-				.toList();
-		familia.setAsistido(asistidos);
-		familiaRepo.save(familia);
+	    Familia familia = familiaRepo.findById(familiaModel.getNroFamilia())
+	            .orElseThrow(() -> new RuntimeException("Familia no encontrada"));
+	    
+	    familia.setNombre(familiaModel.getNombre());
+	    familia.setFechaRegistro(familiaModel.getFechaRegistro());
+	    
+
+	    List<Asistido> asistidos = familiaModel.getAsistido().stream()
+	            .map(asistidoModel -> modelMapper.map(asistidoModel, Asistido.class))
+	            .collect(Collectors.toList()); // ✅ Esto garantiza que se devuelve un ArrayList (mutable).
+	    
+
+	    asistidos.forEach(asistido -> asistido.setFamilia(familia));
+	    
+	    familia.setAsistido(asistidos);
+	    familiaRepo.save(familia);
 	}
 	public List<FamiliaModel> findAllFamilias() {
 		return familiaRepo.findAllWithAsistidos().stream()

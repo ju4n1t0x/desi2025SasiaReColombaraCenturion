@@ -17,5 +17,7 @@ public interface IFamiliaService {
 	
 	public FamiliaModel findFamilia(Integer nroFamilia);
 
+    public Familia getFamiliaById(Integer nroFamilia);
+
 	public void editFamilia(FamiliaModel familiaModel);
 }

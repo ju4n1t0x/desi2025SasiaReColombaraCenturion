@@ -1,6 +1,5 @@
 package tuti.desi.dao;
 
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,11 +9,12 @@ import tuti.desi.entidades.Asistido;
 import tuti.desi.entidades.Familia;
 
 @Repository
-public interface IAsistidoRepo extends JpaRepository<Asistido, Long>{
-	
-	List<Asistido> findByDni(Integer dni);
 
-	long countByFamiliaNroFamilia(Integer nroFamilia);
+public interface IAsistidoRepo extends JpaRepository<Asistido, Integer>{
 
-	long countByFamilia(Familia familia);
+    List<Asistido> findByDni(Integer dni);
+
+    long countByFamiliaNroFamilia(Integer nroFamilia);
+
+    long countByFamilia(Familia familia);
 }

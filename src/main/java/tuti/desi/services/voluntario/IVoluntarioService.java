@@ -2,7 +2,7 @@ package tuti.desi.services.voluntario;
 
 import java.sql.Date;
 import java.util.List;
-
+import java.time.LocalDate;
 import tuti.desi.entidades.EntregaAsistencia;
 import tuti.desi.entidades.Voluntario;
 
@@ -16,5 +16,5 @@ public interface IVoluntarioService {
 	
 	public Voluntario findVoluntario(Long id);
 	
-	public void editVoluntario(Long idOiriginal, Integer nuevoDni, String nuevoNombre, String nuevoApellido, Date nuevaFechaNac, String nuevaOcupacion, Long nuevoNumeroSeguro, List<EntregaAsistencia> nuevaEntregaAsistencia);
+	public void editVoluntario(Long idOiriginal, Integer nuevoDni, String nuevoNombre, String nuevoApellido, LocalDate nuevaFechaNac, String nuevaOcupacion, Long nuevoNumeroSeguro, List<EntregaAsistencia> nuevaEntregaAsistencia);
 }

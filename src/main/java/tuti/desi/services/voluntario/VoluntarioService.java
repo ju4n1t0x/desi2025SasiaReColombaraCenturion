@@ -1,6 +1,7 @@
 package tuti.desi.services.voluntario;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -40,7 +41,7 @@ public class VoluntarioService implements IVoluntarioService{
 
 	@Override
 	public void editVoluntario(Long idOriginal, Integer nuevoDni, String nuevoNombre,
-			String nuevoApellido, Date nuevaFechaNac, String nuevaOcupacion, Long nuevoNumeroSeguro, List<EntregaAsistencia> nuevaEntregaAsistencia) {
+			String nuevoApellido, LocalDate nuevaFechaNac, String nuevaOcupacion, Long nuevoNumeroSeguro, List<EntregaAsistencia> nuevaEntregaAsistencia) {
 		Voluntario volu = this.findVoluntario(idOriginal);
 		volu.setDni(nuevoDni);
 		volu.setNombre(nuevoNombre);

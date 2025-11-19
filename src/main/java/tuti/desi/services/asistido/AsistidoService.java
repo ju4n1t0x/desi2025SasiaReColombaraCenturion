@@ -1,58 +1,97 @@
 package tuti.desi.services.asistido;
 
-import java.sql.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.time.LocalDate;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import tuti.desi.dao.IAsistidoRepo;
 import tuti.desi.entidades.Asistido;
 import tuti.desi.entidades.Familia;
+import tuti.desi.presentacion.models.AsistidoModel;
+import tuti.desi.services.familia.IFamiliaService;
 
 @Service
 public class AsistidoService implements IAsistidoService{
 
-	@Autowired
-	private IAsistidoRepo asistidoRepo;
-	
-	@Override
-	public List<Asistido> getAll() {
-		List<Asistido> listaAsistidos = asistidoRepo.findAll();
-		return listaAsistidos;
-	}
+    @Autowired
+    private IAsistidoRepo asistidoRepo;
+    @Autowired
+    private IFamiliaService familiaService;
 
-	@Override
-	public void saveAsistido(Asistido asistido) {
-		asistidoRepo.save(asistido);
-		
-	}
+    @Autowired
+    private ModelMapper modelMapper;
 
-	@Override
-	public void deleteAsistido(Long id) {
-		asistidoRepo.deleteById(id);
-		
-	}
 
-	@Override
-	public Asistido findAsistido(Long Id) {
-		Asistido asis = asistidoRepo.findById(Id).orElse(null);
-		return asis;
-	}
-	
-	@Override
-	public void editAsistido(Long idOriginal, Integer nuevoDni, String nuevoDomicilio, String nuevoNombre, String nuevoApellido, Date nuevaFechaNac, String nuevaOcupacion, Date nuevaFechaReg, Familia nuevaFamilia) {
-		Asistido asis = this.findAsistido(idOriginal);
-		asis.setDni(nuevoDni);
-		asis.setApellido(nuevoApellido);
-		asis.setNombre(nuevoNombre);
-		asis.setDomicilio(nuevoDomicilio);
-		asis.setFechaNacimiento(nuevaFechaNac);
-		asis.setOcupacion(nuevaOcupacion);
-		asis.setFechaRegistro(nuevaFechaReg);
-		asis.setFamilia(nuevaFamilia);
-		
-		
-		
-	}
-	
+    @Override
+    public List<AsistidoModel> findAll() {
+        return asistidoRepo.findAll().stream()
+
+                .map(asistido -> {
+
+                    AsistidoModel model = modelMapper.map(asistido, AsistidoModel.class);
+
+
+                    if (asistido.getFamilia() != null) {
+
+                        model.setFamiliaNroFamilia(asistido.getFamilia().getNroFamilia());
+                    }
+
+                    return model;
+                })
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public void saveAsistido(AsistidoModel asistidoModel) {
+
+
+        Integer id = asistidoModel.getId();
+        boolean isNew = (id == null || id.equals(0));
+
+
+        Asistido asistido = modelMapper.map(asistidoModel, Asistido.class);
+
+
+        if (asistidoModel.getFamiliaNroFamilia() != null) {
+
+
+            Familia familia = familiaService.getFamiliaById(asistidoModel.getFamiliaNroFamilia());
+
+
+            asistido.setFamilia(familia);
+        }
+
+
+        if (isNew) {
+
+            asistido.setId(null);
+
+
+            asistido.setFechaRegistro(LocalDate.now());
+        }
+
+
+        asistidoRepo.save(asistido); // Guarda (Alta) o Actualiza (Modificación)
+    }
+
+    // 3. deleteAsistido
+    @Override
+    public void deleteAsistido(Integer id) {
+        asistidoRepo.deleteById(id);
+    }
+
+
+    @Override
+    public AsistidoModel findAsistido(Integer id) {
+        Asistido asistido = asistidoRepo.findById(id).orElse(null);
+        if (asistido != null) {
+            return modelMapper.map(asistido, AsistidoModel.class);
+        }
+        return null;
+    }
 }

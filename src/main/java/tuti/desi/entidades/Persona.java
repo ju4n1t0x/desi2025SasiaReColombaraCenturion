@@ -1,6 +1,7 @@
 package tuti.desi.entidades;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,18 +14,21 @@ public class Persona {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 	
 	private Integer dni;
 	private String domicilio;
 	private String nombre;
 	private String apellido;
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	private String ocupacion;
-	public long getId() {
+	
+
+	public Integer getId() { 
 		return id;
 	}
-	public void setId(long id) {
+	
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public Integer getDni() {
@@ -51,10 +55,10 @@ public class Persona {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	public String getOcupacion() {

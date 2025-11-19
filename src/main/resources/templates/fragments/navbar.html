@@ -1,84 +1,105 @@
 <nav th:fragment="navBar" class="navbar navbar-expand-lg bg-primary data-bs-theme=dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">DESI 2025</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Familia
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" th:href="@{/familia/altaFamilia}">Alta</a></li>
-            <li><a class="dropdown-item" th:href="@{/familia/eliminacionFamilia}">Eliminacion</a></li>
-            <li><a class="dropdown-item" th:href="@{/familia/modificacionFamilia}">Modificacion</a></li>
-            <li><a class="dropdown-item" th:href="@{/familia/listadoFamilia}">Listado</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Receta
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" th:href="@{/receta/altaReceta}">Alta</a></li>
-            <li><a class="dropdown-item" th:href="@{/receta/eliminacionReceta}">Eliminacion</a></li>
-            <li><a class="dropdown-item" th:href="@{/receta/modificacionReceta}">Modificacion</a></li>
-            <li><a class="dropdown-item" th:href="@{/receta/listadoReceta}">Consulta</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Preparaciones
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" th:href="@{/preparaciones/buscarPreparacion}">Buscar</a></li>
-			<li><a class="dropdown-item" th:href="@{/preparaciones/altaPreparacion}">Alta</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Entrega
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" th:href="@{/entrega/mostrarFormulario}">Alta</a></li>
-            <li><a class="dropdown-item" th:href="@{/entrega/listadoEntregas}">Listado</a></li>
-          </ul>
-        </li>
-      </ul>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">DESI 2025</a>
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        Familia
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{/familias/nueva}">Alta</a></li>
+
+                        <li><a class="dropdown-item" th:href="@{/familias/listado}">Listar/modificar/eliminar</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        Asistido
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{/asistidos/nuevo}">Alta</a></li>
+                        <li><a class="dropdown-item" th:href="@{/asistidos/listado}">Listar/modificar/eliminar</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        Receta
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{/receta/altaReceta}">Alta</a></li>
+                        <li><a class="dropdown-item" th:href="@{/receta/eliminacionReceta}">Eliminacion</a></li>
+                        <li><a class="dropdown-item" th:href="@{/receta/modificacionReceta}">Modificacion</a></li>
+                        <li><a class="dropdown-item" th:href="@{/receta/listadoReceta}">Consulta</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        Preparaciones
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{/preparaciones/buscarPreparacion}">Buscar</a></li>
+                        <li><a class="dropdown-item" th:href="@{/preparaciones/altaPreparacion}">Alta</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        Entrega
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{/entrega/mostrarFormulario}">Alta</a></li>
+                        <li><a class="dropdown-item" th:href="@{/entrega/listadoEntregas}">Listado</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
     </div>
-  </div>
-</nav>
+</nav>>

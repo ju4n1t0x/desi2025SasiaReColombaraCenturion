@@ -1,8 +1,10 @@
 package tuti.desi.entidades;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,11 +21,13 @@ public class Familia {
 	private String nombre;
 	private Date fechaRegistro;
 	
-	@OneToMany(mappedBy = "familia")
-	private List<EntregaAsistencia> entregaAsistencia;
+
+	@OneToMany(mappedBy = "familia", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<EntregaAsistencia> entregaAsistencia = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "familia")
-	private List<Asistido> asistido;
+
+	@OneToMany(mappedBy = "familia", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Asistido> asistido = new ArrayList<>();
 
 	public Integer getNroFamilia() {
 		return nroFamilia;
@@ -48,6 +52,7 @@ public class Familia {
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
+	
 
 	public List<EntregaAsistencia> getEntregaAsistencia() {
 		return entregaAsistencia;

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+          crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+            crossorigin="anonymous"></script>
+    <title>Formulario Familia</title>
+</head>
+<body>
+<th:block th:replace="~{fragments/navbar :: navBar}"></th:block>
+<h1><span th:text="${isEdit} ? 'Modificar' : 'Alta de'"></span> Familia</h1>
+
+<form th:if="${!isEdit}" th:action="@{/familias/guardar}" th:object="${familia}" method="post">
+    <input type="hidden" th:field="*{nroFamilia}" />
+
+    <label for="nombre">Nombre de la Familia:</label>
+    <input type="text" id="nombre" th:field="*{nombre}" required />
+
+    <label for="fechaRegistro">Fecha de Registro:</label>
+    <input type="text" id="fechaRegistro" th:field="*{fechaRegistro}" readonly/>
+
+    <button type="submit">Registrar Familia</button>
+</form>
+
+<form th:if="${isEdit}" th:action="@{/familias/actualizar}" th:object="${familiaModel}" method="post">
+    <input type="hidden" th:field="*{nroFamilia}" />
+
+    <label for="nombreM">Nombre de la Familia:</label>
+    <input type="text" id="nombreM" th:field="*{nombre}" required />
+
+    <label for="fechaRegistroM">Fecha de Registro:</label>
+    <input type="text" id="fechaRegistroM" th:field="*{fechaRegistro}" readonly/>
+
+    <button type="submit">Actualizar Familia</button>
+</form>
+
+<a th:href="@{/familias/listado}">Cancelar</a>
+</body>
+</html>

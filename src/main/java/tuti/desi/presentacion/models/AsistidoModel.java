@@ -1,39 +1,39 @@
 package tuti.desi.presentacion.models;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 
 import jakarta.validation.constraints.NotNull;
 
 public class AsistidoModel extends PersonaModel {
-	@NotNull
-	private Date fechaRegistro;
-	@NotNull
-	private FamiliaModel familia;
 
-	public AsistidoModel() {
-		super();
-	}
+    @NotNull
+    private LocalDate fechaRegistro;
 
-	public AsistidoModel(@NotNull Date fechaRegistro, @NotNull FamiliaModel familia) {
-		super();
-		this.fechaRegistro = fechaRegistro;
-		this.familia = familia;
-	}
 
-	public Date getFechaRegistro() {
-		return fechaRegistro;
-	}
+    @NotNull
+    private Integer familiaNroFamilia;
 
-	public void setFechaRegistro(Date fechaRegistro) {
-		this.fechaRegistro = fechaRegistro;
-	}
 
-	public FamiliaModel getFamilia() {
-		return familia;
-	}
 
-	public void setFamilia(FamiliaModel familia) {
-		this.familia = familia;
-	}
+    public AsistidoModel() {
+        super();
+    }
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public Integer getFamiliaNroFamilia() {
+        return familiaNroFamilia;
+    }
+
+    public void setFamiliaNroFamilia(Integer familiaNroFamilia) {
+        this.familiaNroFamilia = familiaNroFamilia;
+    }
+
 
 }

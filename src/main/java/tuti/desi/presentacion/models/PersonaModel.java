@@ -1,23 +1,24 @@
 package tuti.desi.presentacion.models;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class PersonaModel {
 
-	private long id;
+	private Integer id;
 
 	private Integer dni;
 	private String domicilio;
 	private String nombre;
 	private String apellido;
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	private String ocupacion;
 
 	public PersonaModel() {
 		super();
 	}
 
-	public PersonaModel(long id, Integer dni, String domicilio, String nombre, String apellido, Date fechaNacimiento,
+	public PersonaModel(Integer id, Integer dni, String domicilio, String nombre, String apellido, LocalDate fechaNacimiento,
 			String ocupacion) {
 		super();
 		this.id = id;
@@ -29,11 +30,11 @@ public class PersonaModel {
 		this.ocupacion = ocupacion;
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -69,11 +70,11 @@ public class PersonaModel {
 		this.apellido = apellido;
 	}
 
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
