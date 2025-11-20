@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Familia {
+public class 	Familia {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
