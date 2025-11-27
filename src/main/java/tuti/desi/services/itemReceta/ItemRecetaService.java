@@ -43,11 +43,7 @@ public class ItemRecetaService implements IItemRecetaService{
 
 	@Override
 	public void editItemReceta(Long idOriginal, Integer nuevasCalorias, Integer nuevaCantidad, Ingrediente nuevoIngrediente, Receta nuevaReceta) {
-		ItemReceta itemRec = this.findItemReceta(idOriginal);
-		itemRec.setCantidad(nuevaCantidad);
-		itemRec.setCalorias(nuevasCalorias);
-		itemRec.setIngrediente(nuevoIngrediente);
-		itemRec.setReceta(nuevaReceta);
+
 		
 	}
 	

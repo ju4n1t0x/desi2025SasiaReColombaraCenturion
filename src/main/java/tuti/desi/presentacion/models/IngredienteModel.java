@@ -2,8 +2,15 @@ package tuti.desi.presentacion.models;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import tuti.desi.entidades.ItemReceta;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class IngredienteModel {
 
 	private long id;
@@ -14,49 +21,7 @@ public class IngredienteModel {
 	
 	private List<ItemRecetaModel> itemReceta;
 
-	public IngredienteModel() {
-		super();
-	}
 
-	public IngredienteModel(long id, String nombre, Integer calorias, List<ItemRecetaModel> itemReceta) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.calorias = calorias;
-		this.itemReceta = itemReceta;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public Integer getCalorias() {
-		return calorias;
-	}
-
-	public void setCalorias(Integer calorias) {
-		this.calorias = calorias;
-	}
-
-	public List<ItemRecetaModel> getItemReceta() {
-		return itemReceta;
-	}
-
-	public void setItemReceta(List<ItemRecetaModel> itemReceta) {
-		this.itemReceta = itemReceta;
-	}
 	
 	
 }

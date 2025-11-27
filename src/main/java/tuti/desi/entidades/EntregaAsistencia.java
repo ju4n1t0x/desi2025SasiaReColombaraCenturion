@@ -8,7 +8,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class EntregaAsistencia {
 
@@ -28,53 +36,7 @@ public class EntregaAsistencia {
 	@ManyToOne
 	private Familia familia;
 	
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public LocalDate getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(LocalDate fecha) {
-		this.fecha = fecha;
-	}
-
-	public Integer getCantidadRaciones() {
-		return cantidadRaciones;
-	}
-
-	public void setCantidadRaciones(Integer cantidadRaciones) {
-		this.cantidadRaciones = cantidadRaciones;
-	}
-
-	public Preparacion getPreparacion() {
-		return preparacion;
-	}
-
-	public void setPreparacion(Preparacion preparacion) {
-		this.preparacion = preparacion;
-	}
-
-	public Voluntario getVoluntario() {
-		return voluntario;
-	}
-
-	public void setVoluntario(Voluntario voluntario) {
-		this.voluntario = voluntario;
-	}
-
-	public Familia getFamilia() {
-		return familia;
-	}
-
-	public void setFamilia(Familia familia) {
-		this.familia = familia;
-	}
 	
 	
 	

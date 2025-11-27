@@ -3,7 +3,15 @@ package tuti.desi.presentacion.models;
 import java.sql.Date;
 
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PreparacionModel {
 
 	private Long id;
@@ -28,68 +36,7 @@ public class PreparacionModel {
 	private Boolean activo = true;
 
 
-	public PreparacionModel() {
-	}
 
-	public PreparacionModel(Integer totalRacionesPreparadas, Date fechaCoccion,
-			Long recetaId, RecetaModel receta) {
-		this.totalRacionesPreparadas = totalRacionesPreparadas;
-		this.stockRacionesRestantes = totalRacionesPreparadas;
-		this.fechaCoccion = fechaCoccion;
-		this.recetaId = recetaId;
-		this.receta = receta;
-		this.activo = true;
-	}
-
-	public Integer getTotalRacionesPreparadas() {
-		return totalRacionesPreparadas;
-	}
-
-	public void setTotalRacionesPreparadas(Integer totalRacionesPreparadas) {
-		this.totalRacionesPreparadas = totalRacionesPreparadas;
-	}
-
-	public Integer getStockRacionesRestantes() {
-		return stockRacionesRestantes;
-	}
-
-	public void setStockRacionesRestantes(Integer stockRacionesRestantes) {
-		this.stockRacionesRestantes = stockRacionesRestantes;
-	}
-
-	public Date getFechaCoccion() {
-		return fechaCoccion;
-	}
-
-	public void setFechaCoccion(Date fechaCoccion) {
-		this.fechaCoccion = fechaCoccion;
-	}
-
-	public Long getRecetaId() {
-		return recetaId;
-	}
-
-	public void setRecetaId(Long recetaId) {
-		this.recetaId = recetaId;
-	}
-
-	public RecetaModel getReceta() {
-		return receta;
-	}
-
-	public void setReceta(RecetaModel receta) {
-		this.receta = receta;
-	}
-
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Boolean getActivo() { return activo; }
-	public void setActivo(Boolean activo) { this.activo = activo; }
 
 	@Override
 	public String toString() {

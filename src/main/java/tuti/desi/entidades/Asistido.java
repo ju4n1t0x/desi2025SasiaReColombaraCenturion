@@ -3,9 +3,17 @@ package tuti.desi.entidades;
 import java.sql.Date;
 import java.time.LocalDate;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn; // ⬅️ Nueva Importación
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Asistido extends Persona {
 
@@ -17,26 +25,6 @@ public class Asistido extends Persona {
     private Familia familia;
 
 
-    public Asistido() {
-        super();
-    }
-
-
-    public LocalDate getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(LocalDate fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public Familia getFamilia() {
-        return familia;
-    }
-
-    public void setFamilia(Familia familia) {
-        this.familia = familia;
-    }
 
 
 }

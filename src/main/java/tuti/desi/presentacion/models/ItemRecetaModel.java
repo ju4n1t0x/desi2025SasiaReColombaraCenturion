@@ -1,8 +1,15 @@
 package tuti.desi.presentacion.models;
 
+import lombok.*;
 import tuti.desi.entidades.Ingrediente;
+import tuti.desi.entidades.ItemReceta;
+import tuti.desi.entidades.Producto;
 import tuti.desi.entidades.Receta;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ItemRecetaModel {
 	
 	private long id;
@@ -12,62 +19,22 @@ public class ItemRecetaModel {
 	private Integer calorias;
 	
 	private Receta receta;
-	
-	private IngredienteModel ingrediente;
 
-	public ItemRecetaModel() {
-		super();
-	}
+	private Ingrediente ingrediente;
 
-	public ItemRecetaModel(long id, Integer cantidad, Integer calorias, Receta receta, IngredienteModel ingrediente) {
-		super();
-		this.id = id;
-		this.cantidad = cantidad;
-		this.calorias = calorias;
-		this.receta = receta;
-		this.ingrediente = ingrediente;
-	}
+	private double subTotal;
 
-	public long getId() {
-		return id;
-	}
+	public static ItemRecetaModel toPojo(ItemReceta itemReceta){
+		double precio = itemReceta.getIngrediente() instanceof Producto ? ((Producto) itemReceta.getIngrediente()).getPrecioActual() : 0;
 
-	public void setId(long id) {
-		this.id = id;
+		return ItemRecetaModel.builder()
+				.id(itemReceta.getId())
+				.cantidad(itemReceta.getCantidad())
+				.calorias(itemReceta.getCalorias())
+				.receta(itemReceta.getReceta())
+				.ingrediente(itemReceta.getIngrediente())
+				.subTotal(precio * itemReceta.getCantidad())
+				.build();
 	}
-
-	public Integer getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(Integer cantidad) {
-		this.cantidad = cantidad;
-	}
-
-	public Integer getCalorias() {
-		return calorias;
-	}
-
-	public void setCalorias(Integer calorias) {
-		this.calorias = calorias;
-	}
-
-	public Receta getReceta() {
-		return receta;
-	}
-
-	public void setReceta(Receta receta) {
-		this.receta = receta;
-	}
-
-	public IngredienteModel getIngrediente() {
-		return ingrediente;
-	}
-
-	public void setIngrediente(IngredienteModel ingrediente) {
-		this.ingrediente = ingrediente;
-	}
-	
-	
 
 }

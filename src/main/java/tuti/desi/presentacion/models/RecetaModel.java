@@ -3,8 +3,15 @@ package tuti.desi.presentacion.models;
 import java.sql.Date;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import tuti.desi.entidades.Receta;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class RecetaModel {
 
 	private long id;
@@ -15,33 +22,7 @@ public class RecetaModel {
 
 	private List<PreparacionModel> preparaciones;
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public List<ItemRecetaModel> getItemReceta() {
-		return itemReceta;
-	}
+	
 }
 
 

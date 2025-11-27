@@ -4,18 +4,24 @@ import java.util.List;
 
 
 import tuti.desi.entidades.Ingrediente;
+import tuti.desi.presentacion.models.CondimentoModel;
+import tuti.desi.presentacion.models.IngredienteModel;
+import tuti.desi.presentacion.models.ProductoModel;
 
 
 public interface IIngredienteService {
 
-	public List<Ingrediente> getAll();
-	
-	public void saveIngrediente(Ingrediente ingrediente);
+	public List<ProductoModel> getAllProductos();
+	public List<CondimentoModel> getAllCondimentos();
+
+	public ProductoModel saveProducto(ProductoModel productoModel);
+	public CondimentoModel saveCondimento(CondimentoModel condimentoModel);
 	
 	public void deleteIngrediente(Long id);
 	
 	public Ingrediente findIngrediente(Long id);
-	
-	public void editIngrediente(Long irOirignal, String nuevoNombre, Integer nuevasCalorias, Float nuevoStockDisponible, Float nuevoPrecioActual);
+
+	public void editProducto(Long id, ProductoModel productoModel);
+	public void editCondimento(Long id, CondimentoModel condimentoModel);
 	
 }

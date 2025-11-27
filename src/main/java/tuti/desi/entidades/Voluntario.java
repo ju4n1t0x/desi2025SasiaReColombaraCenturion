@@ -4,7 +4,15 @@ import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Voluntario extends Persona{
 
@@ -13,21 +21,7 @@ public class Voluntario extends Persona{
 	@OneToMany(mappedBy="voluntario")
 	private List<EntregaAsistencia> entregaAsistnecia;
 
-	public long getNroSeguro() {
-		return nroSeguro;
-	}
 
-	public void setNroSeguro(long nroSeguro) {
-		this.nroSeguro = nroSeguro;
-	}
-
-	public List<EntregaAsistencia> getEntregaAsistnecia() {
-		return entregaAsistnecia;
-	}
-
-	public void setEntregaAsistnecia(List<EntregaAsistencia> entregaAsistnecia) {
-		this.entregaAsistnecia = entregaAsistnecia;
-	}
 	
 	
 }

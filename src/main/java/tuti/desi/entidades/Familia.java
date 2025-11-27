@@ -10,7 +10,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class 	Familia {
 
@@ -29,46 +37,7 @@ public class 	Familia {
 	@OneToMany(mappedBy = "familia", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Asistido> asistido = new ArrayList<>();
 
-	public Integer getNroFamilia() {
-		return nroFamilia;
-	}
 
-	public void setNroFamilia(Integer nroFamilia) {
-		this.nroFamilia = nroFamilia;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public Date getFechaRegistro() {
-		return fechaRegistro;
-	}
-
-	public void setFechaRegistro(Date fechaRegistro) {
-		this.fechaRegistro = fechaRegistro;
-	}
-	
-
-	public List<EntregaAsistencia> getEntregaAsistencia() {
-		return entregaAsistencia;
-	}
-
-	public void setEntregaAsistencia(List<EntregaAsistencia> entregaAsistencia) {
-		this.entregaAsistencia = entregaAsistencia;
-	}
-
-	public List<Asistido> getAsistido() {
-		return asistido;
-	}
-
-	public void setAsistido(List<Asistido> asistido) {
-		this.asistido = asistido;
-	}
 	
 	
 }

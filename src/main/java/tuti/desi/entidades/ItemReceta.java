@@ -1,7 +1,15 @@
 package tuti.desi.entidades;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class ItemReceta {
 
@@ -24,46 +32,9 @@ public class ItemReceta {
 	@JoinColumn(name = "ingrediente_id", nullable = false)
 	private Ingrediente ingrediente;
 
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
 
-	public Integer getCantidad() {
-		return cantidad;
-	}
 
-	public void setCantidad(Integer cantidad) {
-		this.cantidad = cantidad;
-	}
-
-	public Integer getCalorias() {
-		return calorias;
-	}
-
-	public void setCalorias(Integer calorias) {
-		this.calorias = calorias;
-	}
-
-	public Receta getReceta() {
-		return receta;
-	}
-
-	public void setReceta(Receta receta) {
-		this.receta = receta;
-	}
-
-	public Ingrediente getIngrediente() {
-		return ingrediente;
-	}
-
-	public void setIngrediente(Ingrediente ingrediente) {
-		this.ingrediente = ingrediente;
-	}
-	
 	
 	
 }
