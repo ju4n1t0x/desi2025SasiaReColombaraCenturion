@@ -1,27 +1,33 @@
 package tuti.desi.services.ingrediente;
 
 import java.util.List;
+import java.util.Optional;
 
-
+import tuti.desi.entidades.Condimento;
 import tuti.desi.entidades.Ingrediente;
+import tuti.desi.entidades.Producto;
 import tuti.desi.presentacion.models.CondimentoModel;
-import tuti.desi.presentacion.models.IngredienteModel;
 import tuti.desi.presentacion.models.ProductoModel;
-
 
 public interface IIngredienteService {
 
-	public List<ProductoModel> getAllProductos();
-	public List<CondimentoModel> getAllCondimentos();
+    // LECTURA
+    List<ProductoModel> getAllProductos();
+    List<CondimentoModel> getAllCondimentos();
 
-	public ProductoModel saveProducto(ProductoModel productoModel);
-	public CondimentoModel saveCondimento(CondimentoModel condimentoModel);
-	
-	public void deleteIngrediente(Long id);
-	
-	public Ingrediente findIngrediente(Long id);
+    // BÚSQUEDA POR ID
+    Ingrediente findIngrediente(Long id);
+    Optional<Condimento> findCondimentoById(Long id);
+    Optional<Producto> findProductoById(Long id);
 
-	public void editProducto(Long id, ProductoModel productoModel);
-	public void editCondimento(Long id, CondimentoModel condimentoModel);
-	
+    // ESCRITURA (CREATE/UPDATE)
+    // No declaramos throws aquí porque usamos excepciones Unchecked (RuntimeException)
+    ProductoModel saveProducto(ProductoModel productoModel);
+    CondimentoModel saveCondimento(CondimentoModel condimentoModel);
+
+    void editProducto(Long id, ProductoModel productoModel);
+    void editCondimento(Long id, CondimentoModel condimentoModel);
+
+    // ELIMINACIÓN
+    void deleteIngrediente(Long id);
 }

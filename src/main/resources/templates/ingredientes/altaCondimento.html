@@ -1,42 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" th:href="@{/css/index.css}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+          xintegrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
           crossorigin="anonymous"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+            xintegrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
             crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Alta de Condimento</title>
 </head>
 <body>
 <th:block th:replace="~{fragments/navbar :: navBar}"></th:block>
 
-<div class="container">
+<div class="container my-5">
 
-  <h2>Nuevo Ingrediente</h2>
+    <div class="card p-4 shadow">
+        <h2 class="card-title text-center mb-4">Alta de Nuevo Condimento</h2>
 
-    <form th:action="@{/ingredientes/condimentos}" method="post">
-        <div class="form-group">
-            <label for="nombre">Nombre del Ingrediente:</label>
-            <input type="text" id="nombre" name="nombre" class="form-control" required />
-        </div>
-        <div class="form-group">
-            <label for="unidadMedida">Calorias</label>
-            <input type="text" id="unidadMedida" name="unidadMedida" class="form-control" required />
-        </div>
-        <div class="form-group">
-            <label for="stockDisponible">Cantidad</label>
-            <input type="text" id="stockDisponible" class="form-control" required />
-        </div>
-        <div class="form-group">
-            <label for="precioUnitario">Precio por unidad</label>
-            <input type="number" id="precioUnitario" class="form-control" required />
+        <!-- MENSAJE DE ÉXITO -->
+        <div th:if="${param.success}" class="alert alert-success alert-dismissible fade show" role="alert">
+            ¡Condimento guardado exitosamente!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
-    </form>
+        <!-- MANEJO DE ERRORES GENERALES DE NEGOCIO (DESDE EL CONTROLLER) -->
+        <div th:if="${errorCondimento}" class="alert alert-danger" role="alert">
+            <span th:text="${errorCondimento}">Error de validación de Condimento.</span>
+        </div>
+
+        <!-- EL FORMULARIO DEBE ESTAR ENLAZADO AL OBJETO condimento -->
+        <form th:action="@{/ingredientes/condimentos}" th:object="${condimento}" method="post">
+
+            <!-- Si es una edición, necesitamos el ID oculto -->
+            <input type="hidden" th:field="*{id}" />
+
+            <!-- NOMBRE DEL INGREDIENTE -->
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre del Condimento:</label>
+                <input type="text"
+                       id="nombre"
+                       th:field="*{nombre}"
+                       class="form-control"
+                       th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''"
+                       required />
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}">
+                    <span th:errors="*{nombre}">Error en el nombre</span>
+                </div>
+            </div>
+
+            <!-- CALORIAS (ANTES INCORRECTAMENTE LLAMADO 'unidadMedida') -->
+            <div class="mb-3">
+                <label for="calorias" class="form-label">Calorías (por unidad):</label>
+                <input type="number"
+                       id="calorias"
+                       th:field="*{calorias}"
+                       class="form-control"
+                       th:classappend="${#fields.hasErrors('calorias')} ? 'is-invalid' : ''"
+                       required />
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('calorias')}">
+                    <span th:errors="*{calorias}">Error en las calorías</span>
+                </div>
+            </div>
+
+            <!-- Botón de Envío -->
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-primary">Guardar Condimento</button>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>
