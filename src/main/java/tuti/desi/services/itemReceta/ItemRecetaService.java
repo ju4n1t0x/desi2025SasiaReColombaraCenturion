@@ -25,12 +25,21 @@ public class ItemRecetaService implements IItemRecetaService{
 
 	@Override
 	public ItemReceta saveItemReceta(Producto producto, Double cantidad) {
-		ItemReceta itemReceta = new ItemReceta();
-		itemReceta.setIngrediente(producto);
-		itemReceta.setCantidad(cantidad.intValue());
-		itemReceta.setCalorias((int)(cantidad * producto.getCalorias()));
+		if(producto.getStockDisponible() != null && producto.getStockDisponible() > cantidad) {
+			try {
+				ItemReceta itemReceta = new ItemReceta();
+				itemReceta.setIngrediente(producto);
+				itemReceta.setCantidad(cantidad.intValue());
+				itemReceta.setCalorias((int) (cantidad * producto.getCalorias()));
 
-		return itemReceta;
+				return itemReceta;
+
+			} catch (Exception e) {
+				throw new IllegalArgumentException("Error al crear el ItemReceta para el producto: " + producto.getNombre(), e);
+			}
+		}else{
+			throw new IllegalArgumentException("No hay suficiente stock disponible para el producto: " + producto.getNombre());
+		}
 
 	}
 
