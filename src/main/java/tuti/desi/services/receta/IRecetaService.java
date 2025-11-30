@@ -11,7 +11,7 @@ public interface IRecetaService {
 	//renombro getAll() -> findAll()
 	public List<RecetaModel> findAll();
 	
-	public void saveReceta(Receta receta);
+	public void saveReceta(String nombre, String descripcion,List<Long> productoIds,List<Double> productoCantidades,List<Long> condimentoIds);
 	
 	//public void deleteReceta(Long id);
 	
