@@ -14,7 +14,8 @@ public class Receta {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	//cambie long por int
+	private Integer id;
 
 	@Column(name = "nombre")
 	private String nombre;
@@ -28,14 +29,19 @@ public class Receta {
 	@OneToMany(mappedBy = "receta")
 	private List<Preparacion> preparaciones;
 
-	@Column(name="calorias_totales")
+	//nuevo
+	@Setter
+    @Column(name="peso_racion", nullable = false)
+	private Double pesoRacion;
+
+	@Column(name="calorias_totales", nullable = false)
 	private Integer caloriasTotales;
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId() {
 		this.id = id;
 	}
 
@@ -53,14 +59,6 @@ public class Receta {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	public List<ItemReceta> getItemReceta() {
-		return itemReceta;
-	}
-
-	public void setItemReceta(List<ItemReceta> itemReceta) {
-		this.itemReceta = itemReceta;
 	}
 
 	public List<Preparacion> getPreparaciones() {
@@ -102,5 +100,9 @@ public class Receta {
 	// Metodo para recalcular calorías
 	public void recalcularCalorias() {
 		calcularCaloriasTotales();
+	}
+
+    public void setCaloriasRacion(Integer caloriasRacion) {
+		this.caloriasTotales = caloriasRacion;
 	}
 }

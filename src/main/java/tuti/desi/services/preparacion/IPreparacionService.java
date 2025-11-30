@@ -13,7 +13,9 @@ public interface IPreparacionService {
 
 	public PreparacionModel convertToModel(Preparacion preparacion);
 
-	PreparacionModel save(PreparacionModel preparacionModel);
+    List<PreparacionModel> findAll();
+
+    PreparacionModel save(PreparacionModel preparacionModel);
 
 	public void deletePreparacionModel(Long id);
 
