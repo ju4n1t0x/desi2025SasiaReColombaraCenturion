@@ -3,10 +3,7 @@ package tuti.desi.presentacion.apiControllers.preparacion;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tuti.desi.presentacion.dto.PreparacionListadoDto;
 import tuti.desi.entidades.Preparacion;
 import tuti.desi.presentacion.models.PreparacionModel;
@@ -27,6 +24,14 @@ public class PreparacionControllerApi {
     @ResponseBody
     public List<PreparacionListadoDto> buscarPreparacion() {
         return preparacionService.findAll()
+                .stream()
+                .map(this::toDto)
+                .toList();
+    }
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE}, value = "/recetaId")
+    @ResponseBody
+    public List<PreparacionListadoDto> findByRecetaId(@RequestParam Integer recetaId) {
+        return preparacionService.findPreparacionesPorRecetaId(recetaId)
                 .stream()
                 .map(this::toDto)
                 .toList();

@@ -9,16 +9,12 @@ import tuti.desi.presentacion.models.RecetaModel;
 public interface IRecetaService {
 
 	//renombro getAll() -> findAll()
-	public List<RecetaModel> findAll();
-	
-	public void saveReceta(String nombre, String descripcion,List<Long> productoIds,List<Double> productoCantidades,List<Long> condimentoIds);
-	
+	//public List<RecetaModel> findAll();
+
 	//public void deleteReceta(Long id);
 	
 	//public Receta findReceta(Long id);
-
-	public void editReceta(Integer idOriginal, String nuevoNombre, String nuevaDescripcion,List<ItemReceta> nuevoItemReceta, List<Preparacion> nuevasPreparaciones);
-
+	public List<Receta> findAll();
 	//nuevo
 	public RecetaModel findById(Integer id);
 

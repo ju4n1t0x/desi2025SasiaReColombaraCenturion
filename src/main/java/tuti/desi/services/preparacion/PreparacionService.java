@@ -111,4 +111,8 @@ public class PreparacionService implements IPreparacionService {
         return modelMapper.map(listaPreparacionesDelDiaConStock, List.class);
     }
 
+    public List<PreparacionModel> findPreparacionesPorRecetaId(Integer recetaId){
+        List<Preparacion> listaPreparaciones = preparacionRepo.findByReceta_IdAndActivoTrue(recetaId);
+        return modelMapper.map(listaPreparaciones, List.class);
+    }
 }

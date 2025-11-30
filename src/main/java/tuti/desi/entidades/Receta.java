@@ -25,9 +25,7 @@ public class Receta {
 	
 	@OneToMany(mappedBy = "receta", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ItemReceta> itemReceta;
-	
-	@OneToMany(mappedBy = "receta")
-	private List<Preparacion> preparaciones;
+
 
 	//nuevo
 	@Setter
@@ -61,13 +59,6 @@ public class Receta {
 		this.descripcion = descripcion;
 	}
 
-	public List<Preparacion> getPreparaciones() {
-		return preparaciones;
-	}
-
-	public void setPreparaciones(List<Preparacion> preparaciones) {
-		this.preparaciones = preparaciones;
-	}
 
 	public Integer getCaloriasTotales() {
 		// Si no está calculado, calcularlo automáticamente

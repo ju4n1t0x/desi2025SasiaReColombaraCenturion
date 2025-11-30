@@ -35,6 +35,8 @@ public interface IPreparacionRepo extends JpaRepository<Preparacion, Long> {
 
     List<Preparacion> findByRecetaNombreContainingIgnoreCaseAndActivoTrue(String nombreReceta);
 
+    List<Preparacion> findByReceta_IdAndActivoTrue(Integer recetaId);
+
     // BUSCAR POR STOCK
     //List<Preparacion> findByStockRacionesRestantesGreaterThanAndActivoTrue(Integer cantidad);
 

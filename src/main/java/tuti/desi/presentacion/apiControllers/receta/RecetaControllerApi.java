@@ -1,10 +1,12 @@
 package tuti.desi.presentacion.apiControllers.receta;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import tuti.desi.presentacion.dto.RecetaDto;
+import tuti.desi.presentacion.dto.RecetaRequestDto;
 import tuti.desi.presentacion.models.RecetaModel;
 import tuti.desi.services.receta.IRecetaService;
 
@@ -18,11 +20,15 @@ public class RecetaControllerApi {
     @Autowired
     private IRecetaService recetaService;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     // GET ALL
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<RecetaDto>> getAll() {
         List<RecetaDto> dto = recetaService.findAll()
                 .stream()
+                .map(receta -> modelMapper.map(receta, RecetaModel.class))
                 .map(this::toDto)
                 .toList();
         return ResponseEntity.ok(dto);
@@ -36,13 +42,12 @@ public class RecetaControllerApi {
     }
 
     // POST
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RecetaDto> create(@RequestBody RecetaModel body) {
+    public ResponseEntity<RecetaRequestDto> create(@RequestBody RecetaModel body) {
         RecetaModel creada = recetaService.create(body);
-        RecetaDto dto = toDto(creada);
-
-        URI location = URI.create("/recetas/" + dto.id());
+        RecetaRequestDto dto = modelMapper.map(creada, RecetaRequestDto.class);
+        URI location = URI.create("/recetas/" + creada.getId());
         return ResponseEntity.created(location).body(dto); // 201 + Location
     }
 
@@ -67,7 +72,7 @@ public class RecetaControllerApi {
 
     private RecetaDto toDto(RecetaModel m) {
         // link HATEOAS a las preparaciones de esta receta
-        String urlPreparaciones = "/preparacion?recetaId=" + m.getId();
+        String urlPreparaciones = "/preparacion/recetaId?recetaId=" + m.getId();
         return new RecetaDto(
                 m.getId(),
                 m.getNombre(),

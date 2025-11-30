@@ -22,9 +22,6 @@ public class RecetaModel extends Receta {
 	private Double pesoRacion;
 	private Integer caloriasRacion;
 
-	public Integer getId() {
-		return id;
-	}
 }
 
 

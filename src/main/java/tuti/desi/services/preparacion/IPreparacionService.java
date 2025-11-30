@@ -26,5 +26,6 @@ public interface IPreparacionService {
 	List<PreparacionModel> findPreparacionesDelDiaConStock();
 
 	List<Preparacion> findByFechaCoccionAndActivoTrue(Date fecha);
+	public List<PreparacionModel> findPreparacionesPorRecetaId(Integer recetaId);
 }
 
