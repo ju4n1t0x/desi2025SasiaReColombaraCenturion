@@ -24,7 +24,7 @@ public class PreparacionBuscarController {
     }
 
     @GetMapping("/eliminar/{id}")
-    public String eliminarPreparacion(@PathVariable Long id, Model model) {
+    public String eliminarPreparacion(@PathVariable Integer id, Model model) {
         PreparacionModel p = preparacionService.findPreparacion(id);
         p.setActivo(false);
         preparacionService.save(p);

@@ -44,21 +44,34 @@ public class RecetaControllerApi {
     // POST
     @PostMapping(
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RecetaRequestDto> create(@RequestBody RecetaModel body) {
-        RecetaModel creada = recetaService.create(body);
-        RecetaRequestDto dto = modelMapper.map(creada, RecetaRequestDto.class);
+    public ResponseEntity<RecetaDto> create(@RequestBody RecetaRequestDto body) {
+        RecetaModel model = new RecetaModel();
+        model.setNombre(body.nombre());
+        model.setPesoRacion(body.pesoRacion());
+        model.setCaloriasRacion(body.caloriasRacion());
+
+        RecetaModel creada = recetaService.create(model);
+
+        RecetaDto dto = toDto(creada);
+
         URI location = URI.create("/recetas/" + creada.getId());
         return ResponseEntity.created(location).body(dto); // 201 + Location
     }
 
     // PUT
     @PutMapping(value = "/{id}",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RecetaDto> update(@PathVariable Integer id,
-                                            @RequestBody RecetaModel body) {
-        RecetaModel actualizada = recetaService.update(id, body);
-        return ResponseEntity.ok(toDto(actualizada));
+                                            @RequestBody RecetaRequestDto body) {
+        RecetaModel model = new RecetaModel();
+        model.setNombre(body.nombre());
+        model.setPesoRacion(body.pesoRacion());
+        model.setCaloriasRacion(body.caloriasRacion());
+        RecetaModel actualizada = recetaService.update(id, model);
+
+        RecetaDto dto = toDto(actualizada);
+
+        return ResponseEntity.ok(dto);
     }
 
     // DELETE
@@ -81,5 +94,6 @@ public class RecetaControllerApi {
                 urlPreparaciones
         );
     }
+
 }
 

@@ -2,8 +2,15 @@ package tuti.desi.presentacion.dto;
 
 import java.sql.Date;
 
-public record PreparacionListadoDto (Long id,
-    Date fechaCoccion,
-    Integer totalRacionesPreparadas,
-    String nombreReceta)
-{}
+public record PreparacionListadoDto(
+        Integer id,
+        Date fechaCoccion,
+        Integer totalRacionesPreparadas,
+        Integer stockRacionesRestantes,
+        Date fechaVencimiento,
+        Integer recetaId,
+        String urlRecetas) {
+
+}
+
+

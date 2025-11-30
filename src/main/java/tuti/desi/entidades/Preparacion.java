@@ -15,7 +15,7 @@ public class Preparacion {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	@Column(name = "total_raciones_preparadas", nullable = false)
 	private Integer totalRacionesPreparadas;
@@ -25,6 +25,9 @@ public class Preparacion {
 
 	@Column(name = "fecha_coccion")
 	private Date fechaCoccion;
+
+	@Column(name = "fecha_vencimiento")
+	private Date fechaVencimiento;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "receta_id", nullable = false)
@@ -38,7 +41,7 @@ public class Preparacion {
 
 	public Preparacion() {}
 
-	public Preparacion(Integer totalRacionesPreparadas, Date fechaCoccion, Receta receta) {
+	public Preparacion(Integer totalRacionesPreparadas, Date fechaCoccion, Receta receta, Date fechaVencimiento) {
 		this.totalRacionesPreparadas = totalRacionesPreparadas;
 		this.stockRacionesRestantes = totalRacionesPreparadas; // Lógica inicial
 		this.fechaCoccion = fechaCoccion;
@@ -46,16 +49,17 @@ public class Preparacion {
 		this.activo = true; // Valor por defecto
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	public Integer getTotalRacionesPreparadas() {
 		return totalRacionesPreparadas;
 	}
+
 	public void setTotalRacionesPreparadas(Integer totalRacionesPreparadas) {
 		this.totalRacionesPreparadas = totalRacionesPreparadas;
 		if (this.stockRacionesRestantes == null) {
@@ -66,6 +70,7 @@ public class Preparacion {
 	public Integer getStockRacionesRestantes() {
 		return stockRacionesRestantes;
 	}
+
 	public void setStockRacionesRestantes(Integer stockRacionesRestantes) {
 		this.stockRacionesRestantes = stockRacionesRestantes;
 	}
@@ -100,6 +105,14 @@ public class Preparacion {
 
 	public Integer getCaloriasPorPlato() {
 		return receta != null ? receta.getCaloriasTotales() : 0;
+	}
+
+	public Date getFechaVencimiento() {
+		return fechaVencimiento;
+	}
+
+	public void setFechaVencimiento(Date fechaVencimiento) {
+		this.fechaVencimiento = fechaVencimiento;
 	}
 
 	public void consumirRaciones(Integer cantidad) {

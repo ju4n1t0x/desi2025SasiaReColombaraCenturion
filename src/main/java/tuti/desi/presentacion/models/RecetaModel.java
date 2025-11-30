@@ -14,7 +14,7 @@ import tuti.desi.entidades.Receta;
 @AllArgsConstructor
 
 
-public class RecetaModel extends Receta {
+public class RecetaModel {
 
 	private Integer id;
 	private String nombre;

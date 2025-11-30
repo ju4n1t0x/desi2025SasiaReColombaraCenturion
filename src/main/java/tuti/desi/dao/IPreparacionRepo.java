@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import tuti.desi.entidades.Preparacion;
 
 @Repository
-public interface IPreparacionRepo extends JpaRepository<Preparacion, Long> {
+public interface IPreparacionRepo extends JpaRepository<Preparacion, Integer> {
 
     // Obtener preparaciones activas
     List<Preparacion> findByActivoTrueOrderByFechaCoccion();

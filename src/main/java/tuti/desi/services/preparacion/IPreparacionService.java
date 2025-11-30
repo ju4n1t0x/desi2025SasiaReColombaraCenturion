@@ -17,11 +17,11 @@ public interface IPreparacionService {
 
     PreparacionModel save(PreparacionModel preparacionModel);
 
-	public void deletePreparacionModel(Long id);
+	public void deletePreparacionModel(Integer id);
 
-	public PreparacionModel findPreparacion(Long id);
+	public PreparacionModel findPreparacion(Integer id);
 
-	public void editPreparacion(PreparacionModel preparacionModel);
+	public PreparacionModel editPreparacion(PreparacionModel preparacionModel);
 
 	List<PreparacionModel> findPreparacionesDelDiaConStock();
 

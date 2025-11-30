@@ -1,5 +1,6 @@
 package tuti.desi.services.preparacion;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -63,12 +64,18 @@ public class PreparacionService implements IPreparacionService {
 
     @Override
     public PreparacionModel save(PreparacionModel preparacionModel){
-
+        if(preparacionModel.getFechaCoccion() != null && preparacionModel.getFechaCoccion().toLocalDate().isAfter(LocalDate.now())){
+            throw new RuntimeException("La fecha de cocción no puede ser futura");
+        }
+        if(preparacionModel.getFechaVencimiento().toLocalDate().isBefore(preparacionModel.getFechaCoccion().toLocalDate())){
+            throw new RuntimeException("La fecha de vencimiento no puede ser anterior a la fecha de cocción");
+        }
         Preparacion preparacion = modelMapper.map(preparacionModel, Preparacion.class);
 
         if (preparacionModel.getRecetaId() != null) {
             RecetaModel receta = recetaService.findById(preparacionModel.getRecetaId());
-            preparacion.setReceta(receta);
+            Receta entidad = modelMapper.map(receta, Receta.class);
+            preparacion.setReceta(entidad);
         }
         Preparacion preparacionGuardada = preparacionRepo.save(preparacion);
 
@@ -77,12 +84,12 @@ public class PreparacionService implements IPreparacionService {
     }
 
     @Override
-    public void deletePreparacionModel(Long id){
+    public void deletePreparacionModel(Integer id){
         preparacionRepo.deleteById(id);
     }
 
     @Override
-    public PreparacionModel findPreparacion(Long id){
+    public PreparacionModel findPreparacion(Integer id){
         Preparacion preparacion = preparacionRepo.findById(id).orElse(null);
         if (preparacion != null) {
             return modelMapper.map(preparacion, PreparacionModel.class);
@@ -91,14 +98,15 @@ public class PreparacionService implements IPreparacionService {
     }
 
     @Override
-    public void editPreparacion(PreparacionModel preparacionModel){
+    public PreparacionModel editPreparacion(PreparacionModel preparacionModel){
         Preparacion preparacion = preparacionRepo.findById(preparacionModel.getId())
                 .orElseThrow(() -> new RuntimeException("Preparacion no encontrada"));
-        preparacion.setId(preparacionModel.getId());
-        preparacion.setReceta(modelMapper.map(preparacionModel.getRecetaId(), Receta.class));
+        preparacion.setReceta(modelMapper.map(recetaService.findById(preparacionModel.getRecetaId()), Receta.class));
+        preparacion.setTotalRacionesPreparadas(preparacionModel.getTotalRacionesPreparadas());
+        preparacion.setFechaVencimiento(preparacionModel.getFechaVencimiento());
         preparacion.setFechaCoccion(preparacionModel.getFechaCoccion());
         preparacionRepo.save(preparacion);
-
+        return preparacionModel;
     }
 
     @Override
@@ -113,6 +121,10 @@ public class PreparacionService implements IPreparacionService {
 
     public List<PreparacionModel> findPreparacionesPorRecetaId(Integer recetaId){
         List<Preparacion> listaPreparaciones = preparacionRepo.findByReceta_IdAndActivoTrue(recetaId);
-        return modelMapper.map(listaPreparaciones, List.class);
+
+        return listaPreparaciones.stream()
+                .map(p -> modelMapper.map(p, PreparacionModel.class))
+                .toList();
+
     }
 }

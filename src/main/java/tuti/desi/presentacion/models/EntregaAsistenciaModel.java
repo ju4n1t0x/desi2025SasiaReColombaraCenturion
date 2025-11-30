@@ -27,7 +27,7 @@ public class EntregaAsistenciaModel {
 	private Integer cantidadRaciones;
 
 	@NotNull(message = "Debe seleccionar una preparacion.")
-	private Long idPreparacion;
+	private Integer idPreparacion;
 
 	private PreparacionModel preparacion;
 

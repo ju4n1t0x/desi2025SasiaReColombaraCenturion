@@ -1,5 +1,6 @@
 package tuti.desi.presentacion.controller.preparacion;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +22,15 @@ public class PreparacionEditarController {
 
     @Autowired
     private RecetaService recetaService;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @GetMapping("/editar/{id}")
-    public String modificarPreparacion(@PathVariable Long id, Model model) {
+    public String modificarPreparacion(@PathVariable Integer id, Model model) {
         PreparacionModel p = preparacionService.findPreparacion(id);
         model.addAttribute("preparacion", p);
-        Receta receta = recetaService.findById(p.getRecetaId());
+        Receta receta = modelMapper.map(p.getReceta(), Receta.class);
+        recetaService.findById(p.getRecetaId());
         model.addAttribute("receta",receta);
         return "preparaciones/editarPreparacion";
     }

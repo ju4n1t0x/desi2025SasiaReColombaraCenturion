@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PreparacionModel {
 
-	private Long id;
+	private Integer id;
 
 	@NotNull(message = "La cantidad de raciones es obligatoria")
 	@Min(value = 1, message = "Debe preparar al menos 1 ración")
@@ -31,6 +31,8 @@ public class PreparacionModel {
 	@Min(value = 1, message = "Debe seleccionar una receta válida")
 	private Integer recetaId;
 
+	private Date fechaVencimiento;
+
 	private RecetaModel receta;
 
 	private Boolean activo = true;
@@ -42,6 +44,7 @@ public class PreparacionModel {
 				", totalRacionesPreparadas=" + totalRacionesPreparadas +
 				", stockRacionesRestantes=" + stockRacionesRestantes +
 				", fechaCoccion=" + fechaCoccion +
+				", fechaVencimiento=" + fechaVencimiento +
 				", recetaId=" + recetaId +
 				'}';
 	}
