@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tuti.desi.dao.IItemRecetaRepo;
-import tuti.desi.entidades.Ingrediente;
-import tuti.desi.entidades.ItemReceta;
-import tuti.desi.entidades.Receta;
+import tuti.desi.entidades.*;
+import tuti.desi.presentacion.models.ItemRecetaModel;
+import tuti.desi.presentacion.models.ProductoModel;
 
-	
+
 @Service
 public class ItemRecetaService implements IItemRecetaService{
 
@@ -24,28 +24,27 @@ public class ItemRecetaService implements IItemRecetaService{
 	}
 
 	@Override
-	public void saveItemReceta(ItemReceta itemReceta) {
-		itemRecetaRepo.save(itemReceta);
-		
+	public ItemReceta saveItemReceta(Producto producto, Double cantidad) {
+		ItemReceta itemReceta = new ItemReceta();
+		itemReceta.setIngrediente(producto);
+		itemReceta.setCantidad(cantidad.intValue());
+		itemReceta.setCalorias((int)(cantidad * producto.getCalorias()));
+
+		return itemReceta;
+
 	}
 
 	@Override
-	public void deleteItemReceta(Long id) {
-		itemRecetaRepo.deleteById(id);
-		
+	public ItemReceta saveItemRecetaCondimento(Condimento condimento) {
+		ItemReceta itemRecetaCondimento = new ItemReceta();
+		itemRecetaCondimento.setCantidad(0);
+		itemRecetaCondimento.setCalorias(0);
+		itemRecetaCondimento.setIngrediente(condimento);
+
+		return itemRecetaCondimento;
+
 	}
 
-	@Override
-	public ItemReceta findItemReceta(Long id) {
-		ItemReceta itemRec = itemRecetaRepo.findById(id).orElse(null);
-		return itemRec;
-	}
-
-	@Override
-	public void editItemReceta(Long idOriginal, Integer nuevasCalorias, Integer nuevaCantidad, Ingrediente nuevoIngrediente, Receta nuevaReceta) {
-
-		
-	}
 	
 
 }

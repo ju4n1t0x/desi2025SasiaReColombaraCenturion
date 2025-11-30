@@ -14,25 +14,6 @@ public class HomeController {
     }
     
     
-    //receta
-    @GetMapping("/receta/altaReceta")
-    public String altaReceta() {
-        return "receta/altaReceta";
-    }
 
-    @GetMapping("/receta/eliminacionReceta")
-    public String eliminacionReceta() {
-        return "receta/eliminacionReceta";
-    }
-
-    @GetMapping("/receta/modificacionReceta")
-    public String modificacionReceta() {
-        return "receta/modificacionReceta";
-    }
-
-    @GetMapping("/receta/listadoReceta")
-    public String listadoReceta() {
-    	return "receta/listadoReceta";
-    }
 
 }

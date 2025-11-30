@@ -1,4 +1,4 @@
-package tuti.desi.presentacion.apiControllers.asistido;
+package tuti.desi.presentacion.apiControllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
