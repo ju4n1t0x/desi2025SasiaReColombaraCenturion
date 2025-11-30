@@ -94,7 +94,7 @@ public class Preparacion {
 		this.entregaAsistencia = entregaAsistencia;
 	}
 
-	public Long getRecetaId() {
+	public Integer getRecetaId() {
 		return receta != null ? receta.getId() : null;
 	}
 

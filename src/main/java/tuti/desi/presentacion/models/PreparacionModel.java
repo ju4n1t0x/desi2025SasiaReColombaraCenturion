@@ -29,14 +29,11 @@ public class PreparacionModel {
 
 	@NotNull(message = "La receta es obligatoria")
 	@Min(value = 1, message = "Debe seleccionar una receta válida")
-	private Long recetaId;
+	private Integer recetaId;
 
 	private RecetaModel receta;
 
 	private Boolean activo = true;
-
-
-
 
 	@Override
 	public String toString() {

@@ -26,7 +26,7 @@ public class PreparacionEditarController {
     public String modificarPreparacion(@PathVariable Long id, Model model) {
         PreparacionModel p = preparacionService.findPreparacion(id);
         model.addAttribute("preparacion", p);
-        Receta receta = recetaService.findReceta(p.getRecetaId());
+        Receta receta = recetaService.findById(p.getRecetaId());
         model.addAttribute("receta",receta);
         return "preparaciones/editarPreparacion";
     }

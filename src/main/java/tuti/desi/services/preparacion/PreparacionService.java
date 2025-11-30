@@ -1,6 +1,5 @@
 package tuti.desi.services.preparacion;
 
-import java.util.Date;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -10,6 +9,7 @@ import tuti.desi.dao.IPreparacionRepo;
 import tuti.desi.entidades.Preparacion;
 import tuti.desi.entidades.Receta;
 import tuti.desi.presentacion.models.PreparacionModel;
+import tuti.desi.presentacion.models.RecetaModel;
 import tuti.desi.services.receta.RecetaService;
 
 @Service
@@ -35,13 +35,39 @@ public class PreparacionService implements IPreparacionService {
         return modelMapper.map(listaPreparaciones, List.class);
     }
 
+
+    @Override
+    public List<PreparacionModel> findAll(){
+        return preparacionRepo.findByActivoTrueOrderByFechaCoccion()
+                .stream()
+                .map(this::convertToModelSimple)
+                .toList();
+    }
+
+    private PreparacionModel convertToModelSimple(Preparacion p) {
+        PreparacionModel model = new PreparacionModel();
+
+        model.setId(p.getId());
+        model.setFechaCoccion(p.getFechaCoccion());
+        model.setTotalRacionesPreparadas(p.getTotalRacionesPreparadas());
+
+        if (p.getReceta() != null) {
+            RecetaModel recetaModel = new RecetaModel();
+            //recetaModel.setId(p.getReceta().getId());
+            recetaModel.setNombre(p.getReceta().getNombre());
+            model.setReceta(recetaModel);
+        }
+
+        return model;
+    }
+
     @Override
     public PreparacionModel save(PreparacionModel preparacionModel){
 
         Preparacion preparacion = modelMapper.map(preparacionModel, Preparacion.class);
 
         if (preparacionModel.getRecetaId() != null) {
-            Receta receta = recetaService.findReceta(preparacionModel.getRecetaId());
+            RecetaModel receta = recetaService.findById(preparacionModel.getRecetaId());
             preparacion.setReceta(receta);
         }
         Preparacion preparacionGuardada = preparacionRepo.save(preparacion);

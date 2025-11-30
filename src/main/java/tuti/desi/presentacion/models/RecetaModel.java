@@ -12,17 +12,19 @@ import tuti.desi.entidades.Receta;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RecetaModel {
 
-	private long id;
+
+public class RecetaModel extends Receta {
+
+	private Integer id;
 	private String nombre;
 	private String descripcion;
+	private Double pesoRacion;
+	private Integer caloriasRacion;
 
-	private List<ItemRecetaModel> itemReceta;
-
-	private List<PreparacionModel> preparaciones;
-
-	
+	public Integer getId() {
+		return id;
+	}
 }
 
 

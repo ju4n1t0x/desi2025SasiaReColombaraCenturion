@@ -32,7 +32,7 @@ public class PreparacionAltaController {
     public String altaPreparacion(Model model) {
         // Crear nuevo model para el formulario
         model.addAttribute("preparacion", new PreparacionModel());
-        model.addAttribute("recetas", recetaService.getAll());
+        model.addAttribute("recetas", recetaService.findAll());
         return "preparaciones/altaPreparacion";
     }
 
@@ -49,7 +49,7 @@ public class PreparacionAltaController {
 
         if (result.hasErrors()) {
             // Volver a cargar las recetas para el select
-            model.addAttribute("recetas", recetaService.getAll());
+            model.addAttribute("recetas", recetaService.findAll());
             return "preparaciones/altaPreparacion";
         }
         System.out.println("antes del try");
@@ -57,14 +57,14 @@ public class PreparacionAltaController {
 
             //Validamos que no haya recetas del mismo
             java.sql.Date fecha = preparacionModel.getFechaCoccion();
-            Long recetaId = preparacionModel.getRecetaId();
+            Integer recetaId = preparacionModel.getRecetaId();
             boolean existe = preparacionService.findByFechaCoccionAndActivoTrue(fecha)
                     .stream()
                     .anyMatch(p -> Objects.equals(p.getReceta().getId(), recetaId));
             if (existe) {
                 model.addAttribute("mensaje", "Ya existe una preparación para esta receta en la fecha seleccionada.");
                 model.addAttribute("tipoMensaje", "danger");
-                model.addAttribute("recetas", recetaService.getAll());
+                model.addAttribute("recetas", recetaService.findAll());
                 return "preparaciones/altaPreparacion";
             }
 
@@ -83,7 +83,7 @@ public class PreparacionAltaController {
             // En caso de error
             model.addAttribute("mensaje", "Error al guardar la preparación: " + e.getMessage());
             model.addAttribute("tipoMensaje", "danger");
-            model.addAttribute("recetas", recetaService.getAll());
+            model.addAttribute("recetas", recetaService.findAll());
             return "preparaciones/altaPreparacion";
         }
     }
