@@ -44,6 +44,14 @@ public class AsistenciaControllerApi {
         return ResponseEntity.ok(dto);
     }
 
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<Void> eliminarAsistencia(@PathVariable Integer id) {
+        asistenciaService.eliminarAsistencia(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+
     // Mapeo de Model -> DTO
     private AsistenciaDto toDto(AsistenciaModel asistenciaModel) {
         String urlPreparacion = "/preparacion/recetaId?id=" + asistenciaModel.getRacionId();

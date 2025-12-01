@@ -58,7 +58,13 @@ public class AsistenciaService implements IAsistenciaService {
     }
 
     @Override
-    public void eliminarAsistencia(Integer id) {
+    public String eliminarAsistencia(Integer id) {
+        try{
+        asistenciaRepo.deleteById(id);
+        return "Asistencia con id: "+id+" eliminada correctamente.";}
+        catch (Exception e){
+            return "No se pudo eliminar la asistencia con id: "+id;
+        }
 
     }
 

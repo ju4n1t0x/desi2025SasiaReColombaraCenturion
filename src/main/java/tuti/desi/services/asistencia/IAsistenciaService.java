@@ -14,7 +14,7 @@ public interface IAsistenciaService {
 
     public List<AsistenciaModel> obtenerAsistencias();
 
-    public void eliminarAsistencia(Integer id);
+    public String eliminarAsistencia(Integer id);
 
     public AsistenciaModel actualizarAsistencia(Integer id, AsistenciaModel asistenciaModel);
 
