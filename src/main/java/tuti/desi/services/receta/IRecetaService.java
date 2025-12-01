@@ -14,7 +14,7 @@ public interface IRecetaService {
 	//public void deleteReceta(Long id);
 	
 	//public Receta findReceta(Long id);
-	public List<Receta> findAll();
+	public List<RecetaModel> findAll();
 	//nuevo
 	public RecetaModel findById(Integer id);
 

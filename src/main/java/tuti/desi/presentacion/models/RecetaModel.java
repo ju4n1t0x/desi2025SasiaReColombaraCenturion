@@ -20,7 +20,7 @@ public class RecetaModel {
 	private String nombre;
 	private String descripcion;
 	private Double pesoRacion;
-	private Integer caloriasRacion;
+	private Integer caloriasTotales;
 
 }
 

@@ -1,18 +1,13 @@
 package tuti.desi.presentacion.apiControllers.preparacion;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tuti.desi.presentacion.dto.PreparacionListadoDto;
-import tuti.desi.entidades.Preparacion;
-import tuti.desi.presentacion.dto.PreparacionRequestDto;
-import tuti.desi.presentacion.dto.RecetaDto;
-import tuti.desi.presentacion.dto.RecetaRequestDto;
+import tuti.desi.presentacion.dto.preparacionDto.PreparacionListadoDto;
+import tuti.desi.presentacion.dto.preparacionDto.PreparacionRequestDto;
 import tuti.desi.presentacion.models.PreparacionModel;
-import tuti.desi.presentacion.models.RecetaModel;
 import tuti.desi.services.preparacion.IPreparacionService;
 
 import java.net.URI;
@@ -20,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/preparacion")
-@Tag(name= "Preparaciones", description = "Preparaciones")
+@Tag(name= "Raciones", description = "S02 - Raciones")
 public class PreparacionControllerApi {
 
     @Autowired
@@ -36,6 +31,7 @@ public class PreparacionControllerApi {
                 .map(this::toDto)
                 .toList();
     }
+
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE}, value = "/recetaId")
     @ResponseBody
     public List<PreparacionListadoDto> findByRecetaId(@RequestParam Integer recetaId) {

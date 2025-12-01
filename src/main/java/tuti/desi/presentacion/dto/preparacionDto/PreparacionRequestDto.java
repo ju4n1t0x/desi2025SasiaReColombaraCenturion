@@ -1,7 +1,6 @@
-package tuti.desi.presentacion.dto;
+package tuti.desi.presentacion.dto.preparacionDto;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 public record PreparacionRequestDto(
         Date fechaCoccion,

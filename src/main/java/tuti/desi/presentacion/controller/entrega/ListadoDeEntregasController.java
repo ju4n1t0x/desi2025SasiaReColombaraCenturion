@@ -35,7 +35,7 @@ public class ListadoDeEntregasController {
         }
 
          @GetMapping("entrega/eliminar/{id}")
-         public String eliminarEntrega(@PathVariable Long id) {
+         public String eliminarEntrega(@PathVariable Integer id) {
              entregaAsistenciaService.deleteEntregaAsistencia(id);
              return "redirect:/entrega/listadoEntregas";
          }

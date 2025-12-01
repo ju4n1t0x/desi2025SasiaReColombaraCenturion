@@ -1,4 +1,4 @@
-package tuti.desi.presentacion.dto;
+package tuti.desi.presentacion.dto.recetaDto;
 
 public record RecetaRequestDto(
         String nombre,

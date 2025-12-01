@@ -13,9 +13,9 @@ public interface IEntregaAsistenciaService {
 
         EntregaAsistenciaModel save(EntregaAsistenciaModel entregaAsistenciaModel);
 
-        void deleteEntregaAsistencia(Long id);
+        void deleteEntregaAsistencia(Integer id);
 
-        EntregaAsistenciaModel findEntregaAsistencia(Long id);
+        EntregaAsistenciaModel findEntregaAsistencia(Integer id);
 
         EntregaAsistenciaModel editEntregaAsistencia(EntregaAsistenciaModel entregaAsistenciaModel);
 

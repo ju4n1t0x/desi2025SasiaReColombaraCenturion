@@ -17,7 +17,7 @@ import tuti.desi.entidades.Preparacion;
 @AllArgsConstructor
 public class EntregaAsistenciaModel {
 
-	private Long id;
+	private Integer id;
 
 
 	private LocalDate fecha;

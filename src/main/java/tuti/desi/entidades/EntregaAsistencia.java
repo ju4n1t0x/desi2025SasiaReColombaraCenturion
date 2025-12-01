@@ -22,7 +22,7 @@ public class EntregaAsistencia {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 	
 	private LocalDate fecha;
 	private Integer cantidadRaciones;

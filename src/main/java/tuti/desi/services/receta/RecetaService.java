@@ -34,9 +34,11 @@ public class RecetaService implements IRecetaService{
 
 
 	@Override
-	public List<Receta> findAll() {
+	public List<RecetaModel> findAll() {
 		List<Receta> listaRecetas = recetaRepo.findAll();
-		return listaRecetas;
+		return listaRecetas.stream()
+				.map(receta -> modelMapper.map(receta, RecetaModel.class))
+				.toList();
 	}
 
 	@Override
@@ -76,7 +78,7 @@ public class RecetaService implements IRecetaService{
 
 		receta.setNombre(model.getNombre());
 		receta.setPesoRacion(model.getPesoRacion());
-		receta.setCaloriasRacion(model.getCaloriasRacion());
+		receta.setCaloriasRacion(model.getCaloriasTotales());
 
 		Receta guardada = recetaRepo.save(receta);
 		return modelMapper.map(guardada, RecetaModel.class);
@@ -96,7 +98,7 @@ public class RecetaService implements IRecetaService{
 		if (model.getPesoRacion() == null || model.getPesoRacion() <= 0) {
 			throw new RuntimeException("El peso de la ración debe ser positivo");
 		}
-		if (model.getCaloriasRacion() == null || model.getCaloriasRacion() <= 0) {
+		if (model.getCaloriasTotales() == null || model.getCaloriasTotales() <= 0) {
 			throw new RuntimeException("Las calorías deben ser un entero positivo");
 		}
 	}

@@ -71,7 +71,7 @@ public class EntregaAsistenciaService implements IEntregaAsistenciaService {
 
 
 	@Override
-	public void deleteEntregaAsistencia(Long id) {
+	public void deleteEntregaAsistencia(Integer id) {
 		EntregaAsistencia entrega = entregaAsistenciaRepo.findById(id)
 		                          .orElseThrow(() ->new RuntimeException("Entrega de asistencia no encontrada"));
 		 Preparacion preparacion = entrega.getPreparacion();
@@ -83,7 +83,7 @@ public class EntregaAsistenciaService implements IEntregaAsistenciaService {
 	}
 
 	@Override
-	public EntregaAsistenciaModel findEntregaAsistencia(Long id) {
+	public EntregaAsistenciaModel findEntregaAsistencia(Integer id) {
     EntregaAsistencia entregaAsis = entregaAsistenciaRepo.findById(id).orElse(null);
     if (entregaAsis != null) {
 		if(entregaAsis.getPreparacion().getStockRacionesRestantes() != 0)

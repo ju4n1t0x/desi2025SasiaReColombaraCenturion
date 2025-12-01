@@ -5,8 +5,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-import tuti.desi.presentacion.dto.RecetaDto;
-import tuti.desi.presentacion.dto.RecetaRequestDto;
+import tuti.desi.presentacion.dto.recetaDto.RecetaDto;
+import tuti.desi.presentacion.dto.recetaDto.RecetaRequestDto;
 import tuti.desi.presentacion.models.RecetaModel;
 import tuti.desi.services.receta.IRecetaService;
 
@@ -48,7 +48,7 @@ public class RecetaControllerApi {
         RecetaModel model = new RecetaModel();
         model.setNombre(body.nombre());
         model.setPesoRacion(body.pesoRacion());
-        model.setCaloriasRacion(body.caloriasRacion());
+        model.setCaloriasTotales(body.caloriasRacion());
 
         RecetaModel creada = recetaService.create(model);
 
@@ -66,7 +66,7 @@ public class RecetaControllerApi {
         RecetaModel model = new RecetaModel();
         model.setNombre(body.nombre());
         model.setPesoRacion(body.pesoRacion());
-        model.setCaloriasRacion(body.caloriasRacion());
+        model.setCaloriasTotales(body.caloriasRacion());
         RecetaModel actualizada = recetaService.update(id, model);
 
         RecetaDto dto = toDto(actualizada);
@@ -90,7 +90,7 @@ public class RecetaControllerApi {
                 m.getId(),
                 m.getNombre(),
                 m.getPesoRacion(),
-                m.getCaloriasRacion(),
+                m.getCaloriasTotales(),
                 urlPreparaciones
         );
     }

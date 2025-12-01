@@ -11,15 +11,12 @@ import org.springframework.stereotype.Repository;
 import tuti.desi.entidades.EntregaAsistencia;
 
 @Repository
-public interface IEntregaAsistenciaRepo extends JpaRepository<EntregaAsistencia, Long>{
+public interface IEntregaAsistenciaRepo extends JpaRepository<EntregaAsistencia, Integer>{
 	List<EntregaAsistencia> findByFecha(Date fecha);
 
 	@Query("SELECT ea FROM EntregaAsistencia ea JOIN FETCH ea.familia JOIN FETCH ea.preparacion")
 	List<EntregaAsistencia> buscarPorFamiliaYPreparacion();
 
-	List<EntregaAsistencia> findByFecha(LocalDate fecha);
-	List<EntregaAsistencia> findByFamilia_NroFamilia(Integer nroFamilia);
-	List<EntregaAsistencia> findByFamilia_NombreContainingIgnoreCase(String nombre);
 
 	@Query("SELECT ea FROM EntregaAsistencia ea JOIN FETCH ea.familia f JOIN FETCH ea.preparacion p " +
 	"WHERE (:fecha IS NULL OR ea.fecha = :fecha)" +

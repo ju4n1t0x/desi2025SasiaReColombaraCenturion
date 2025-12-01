@@ -38,10 +38,16 @@ public class PreparacionService implements IPreparacionService {
 
 
     @Override
-    public List<PreparacionModel> findAll(){
-        return preparacionRepo.findByActivoTrueOrderByFechaCoccion()
-                .stream()
-                .map(this::convertToModelSimple)
+    public List<PreparacionModel> findAll() {
+        List<Preparacion> listaPreparaciones = preparacionRepo.findByActivoTrueOrderByFechaCoccion();
+        return listaPreparaciones.stream()
+                .map(p -> {
+                    PreparacionModel model = modelMapper.map(p, PreparacionModel.class);
+                    if (p.getReceta() != null) {
+                        model.setRecetaId(p.getReceta().getId());
+                    }
+                    return model;
+                })
                 .toList();
     }
 

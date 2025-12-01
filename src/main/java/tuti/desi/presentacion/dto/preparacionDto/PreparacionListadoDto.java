@@ -1,4 +1,4 @@
-package tuti.desi.presentacion.dto;
+package tuti.desi.presentacion.dto.preparacionDto;
 
 import java.sql.Date;
 
