@@ -1,0 +1,49 @@
+CASO 1 – Obtener todas las recetas
+----------------------------------
+Objetivo: verificar que el endpoint GET /recetas funciona y devuelve la lista de recetas existentes.
+
+curl --location --request GET "http://localhost:8080/recetas" \
+  --header "Accept: application/json"
+
+
+CASO 2 – Crear una nueva receta
+-------------------------------
+Objetivo: verificar que el endpoint POST /recetas permite dar de alta una receta.
+
+curl --location --request POST "http://localhost:8080/recetas" \
+  --header "Content-Type: application/json" \
+  --data-raw '{
+    "nombre": "Guiso de lentejas",
+    "pesoRacion": 320,
+    "caloriasRacion": 550
+  }'
+
+
+CASO 3 – Listar preparaciones
+-----------------------------
+Objetivo: verificar que el endpoint GET /preparacion devuelve las preparaciones disponibles.
+
+curl --location --request GET "http://localhost:8080/preparacion" \
+  --header "Accept: application/json"
+
+
+CASO 4 – Crear una preparación
+------------------------------
+Objetivo: verificar que el endpoint POST /preparacion crea una preparación a partir de una receta existente (por ejemplo, receta_id = 1 cargada en los scripts SQL).
+
+curl --location --request POST "http://localhost:8080/preparacion" \
+  --header "Content-Type: application/json" \
+  --data-raw '{
+    "fechaCoccion": "2025-03-05",
+    "totalRacionesPreparadas": 12,
+    "recetaId": 1,
+    "fechaVencimiento": "2025-03-07"
+  }'
+
+
+CASO 5 – Listar asistencias
+---------------------------
+Objetivo: verificar que el endpoint GET /asistencias/listar devuelve las asistencias registradas.
+
+curl --location --request GET "http://localhost:8080/asistencias/listar" \
+  --header "Accept: application/json"
