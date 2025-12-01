@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tuti.desi.presentacion.dto.asistenciaDto.AsistenciaDto;
+import tuti.desi.presentacion.dto.asistenciaDto.AsistenciaRequestDto;
 import tuti.desi.presentacion.dto.preparacionDto.PreparacionListadoDto;
 import tuti.desi.presentacion.dto.recetaDto.RecetaDto;
 import tuti.desi.presentacion.models.AsistenciaModel;
@@ -15,6 +16,7 @@ import tuti.desi.presentacion.models.RecetaModel;
 import tuti.desi.services.asistencia.AsistenciaService;
 import tuti.desi.services.asistencia.IAsistenciaService;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -38,16 +40,33 @@ public class AsistenciaControllerApi {
     }
 
     @PostMapping("crear")
-    public ResponseEntity<AsistenciaDto> crearAsistencia(@RequestBody AsistenciaModel asistenciaModel) {
-        AsistenciaModel creada = asistenciaService.crearAsistencia(asistenciaModel);
+    public ResponseEntity<AsistenciaDto> crearAsistencia(@RequestBody  AsistenciaRequestDto asistenciaRequestDto) {
+        AsistenciaModel model = new AsistenciaModel();
+        model.setFechaEntrega(asistenciaRequestDto.fechaEntrega());
+        model.setAsistidoId(asistenciaRequestDto.idPersona());
+        model.setRacionId(asistenciaRequestDto.idRacion());
+        AsistenciaModel creada = asistenciaService.crearAsistencia(model);
+
         AsistenciaDto dto = toDto(creada);
-        return ResponseEntity.ok(dto);
+        URI location = URI.create("/asistencias/" + creada.getId());
+        return ResponseEntity.created(location).body(dto);
     }
 
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Void> eliminarAsistencia(@PathVariable Integer id) {
         asistenciaService.eliminarAsistencia(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<AsistenciaDto> actualizarAsistencia(@PathVariable Integer id, @RequestBody AsistenciaRequestDto body ) {
+        AsistenciaModel creada = asistenciaService.findById(id);
+        creada.setAsistidoId(body.idPersona());
+        creada.setRacionId(body.idRacion());
+        creada.setFechaEntrega(body.fechaEntrega());
+        AsistenciaModel actualizada = asistenciaService.actualizarAsistencia(creada);
+        AsistenciaDto dto = toDto(actualizada);
+        return ResponseEntity.ok(dto);
     }
 
 

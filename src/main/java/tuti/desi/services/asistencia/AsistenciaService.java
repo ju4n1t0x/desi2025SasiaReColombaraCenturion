@@ -67,10 +67,34 @@ public class AsistenciaService implements IAsistenciaService {
         }
 
     }
+    @Override
+    public AsistenciaModel findById(Integer id) {
+        Asistencia asistencia = asistenciaRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Asistencia no encontrada"));
+        return convertToModel(asistencia);
+    }
 
     @Override
-    public AsistenciaModel actualizarAsistencia(Integer id, AsistenciaModel asistenciaModel) {
-        return null;
+    public AsistenciaModel actualizarAsistencia(AsistenciaModel asistenciaModel) {
+        Asistencia asistenciaExistente = asistenciaRepo.findById(asistenciaModel.getId())
+                .orElseThrow(() -> new RuntimeException("Asistencia no encontrada"));
+
+        asistenciaExistente.setFechaEntrega(asistenciaModel.getFechaEntrega());
+
+        if (asistenciaModel.getRacionId() != null) {
+            Preparacion racion = preparacionRepo.findById(asistenciaModel.getRacionId())
+                    .orElseThrow(() -> new RuntimeException("Racion no encontrada"));
+            asistenciaExistente.setRacion(racion);
+        }
+
+        if (asistenciaModel.getAsistidoId() != null) {
+            Asistido asistido = asistidoRepo.findById(asistenciaModel.getAsistidoId())
+                    .orElseThrow(() -> new RuntimeException("Asistido no encontrado"));
+            asistenciaExistente.setAsistido(asistido);
+        }
+
+        Asistencia asistenciaActualizada = asistenciaRepo.save(asistenciaExistente);
+        return convertToModel(asistenciaActualizada);
     }
 
     private AsistenciaModel convertToModel(Asistencia asistencia){

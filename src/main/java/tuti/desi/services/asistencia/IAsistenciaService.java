@@ -11,12 +11,13 @@ import java.util.List;
 public interface IAsistenciaService {
 
     public AsistenciaModel crearAsistencia(AsistenciaModel asistenciaModel);
+    public AsistenciaModel findById(Integer id);
 
     public List<AsistenciaModel> obtenerAsistencias();
 
     public String eliminarAsistencia(Integer id);
 
-    public AsistenciaModel actualizarAsistencia(Integer id, AsistenciaModel asistenciaModel);
+    public AsistenciaModel actualizarAsistencia( AsistenciaModel asistenciaModel);
 
 
 }
